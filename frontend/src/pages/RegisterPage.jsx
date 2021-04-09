@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { authentication } from '../firebase'
+import { Card, Button } from 'antd'
 
-const RegisterPage = () => {
+const RegisterPage = ({ history }) => {
   const [email, setEmail] = useState('markusmatu96@gmail.com')
   const [buttonText, setButtonText] = useState('Submit')
+
+  const userDetails = useSelector((state) => state.user)
+
+  useEffect(() => {
+    if (userDetails && userDetails.token) history.push('/')
+  }, [userDetails])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -26,47 +34,51 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className='container p-5'>
-      <div className='col-md-6 offset-md-3'>
-        <h1 className='p-5 text-center'>Register</h1>
+    <div className='col-md-6 offset-md-3 p-5'>
+      <Card>
+        <h1 className='pt-5 text-center'>Register</h1>
 
-        <form>
+        <form className='form-background p-4'>
           <div className='form-group'>
-            <label className='text-muted'>Email</label>
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               type='email'
-              className='form-control'
+              className='form-control input-background p-3'
+              placeholder='Email'
             />
+            <label>Email</label>
           </div>
 
-          <div>
-            <button
-              disabled={
-                !email ||
-                buttonText === 'Submitted' ||
-                buttonText === 'Submitting'
-              }
-              onClick={handleSubmit}
-              className='btn btn-primary btn-raised mr-3'
-            >
-              {buttonText}
-            </button>
+          <Button
+            disabled={
+              !email ||
+              buttonText === 'Submitted' ||
+              buttonText === 'Submitting'
+            }
+            onClick={handleSubmit}
+            block
+            shape='round'
+            size='large'
+            className='btn btn-primary btn-raised mt-3 mb-3'
+          >
+            {buttonText}
+          </Button>
 
+          <div className='d-flex justify-content-center align-items-center mt-3'>
             <Link
               to='/authentication/forgot-password'
               className='btn btn-sm btn-outline-danger'
             >
               Forgot Password?
             </Link>
-          </div>
 
-          <Link to='/login' className='btn btn-sm btn-outline-primary mt-3'>
-            Have an account? Log In
-          </Link>
+            <Link to='/login' className='btn btn-sm btn-outline-primary ml-4'>
+              Have an account? Log In
+            </Link>
+          </div>
         </form>
-      </div>
+      </Card>
     </div>
   )
 }

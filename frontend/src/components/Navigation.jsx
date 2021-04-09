@@ -5,17 +5,35 @@ import {
   AppstoreOutlined,
   UserOutlined,
   UserAddOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons'
-
+import firebase from 'firebase'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const { SubMenu, Item } = Menu
 
 const Navigation = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const [current, setCurrent] = useState('home')
+
+  const userInfo = useSelector((state) => state.user)
 
   const handleClick = (e) => {
     setCurrent(e.key)
+  }
+
+  const logoutHandler = () => {
+    firebase.auth().signOut()
+
+    dispatch({
+      type: 'LOGOUT_USER',
+      payload: null,
+    })
+
+    history.push('/login')
   }
 
   return (
@@ -24,18 +42,32 @@ const Navigation = () => {
         <Link to='/'>Home</Link>
       </Item>
 
-      <Item key='register' icon={<UserAddOutlined />} className='float-right'>
-        <Link to='/register'>Register</Link>
-      </Item>
+      {!userInfo && (
+        <Item key='register' icon={<UserAddOutlined />} className='float-right'>
+          <Link to='/register'>Register</Link>
+        </Item>
+      )}
 
-      <Item key='login' icon={<UserOutlined />} className='float-right'>
-        <Link to='/login'>Log In</Link>
-      </Item>
+      {!userInfo && (
+        <Item key='login' icon={<UserOutlined />} className='float-right'>
+          <Link to='/login'>Log In</Link>
+        </Item>
+      )}
 
-      <SubMenu key='SubMenu' icon={<AppstoreOutlined />} title='User'>
-        <Item key='setting:1'>Option 1</Item>
-        <Item key='setting:2'>Option 2</Item>
-      </SubMenu>
+      {userInfo && (
+        <SubMenu
+          key='SubMenu'
+          icon={<AppstoreOutlined />}
+          title={userInfo.email && userInfo.email.split('@')[0]}
+          className='float-right'
+        >
+          <Item key='setting:1'>Option 1</Item>
+          <Item key='setting:2'>Option 2</Item>
+          <Item icon={<LogoutOutlined />} onClick={logoutHandler}>
+            Log Out
+          </Item>
+        </SubMenu>
+      )}
     </Menu>
   )
 }

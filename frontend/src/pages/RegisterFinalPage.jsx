@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { authentication } from '../firebase'
 import { toast } from 'react-toastify'
+import { Card, Button } from 'antd'
 
 const initialState = {
   name: 'Markus',
-  email: 'markusw880i@hotmail.com',
+  email: 'markusmatu96@gmail.com',
   password: 'abohassan',
   confirmPassword: 'abohassan',
   buttonText: 'Submit',
@@ -15,6 +17,12 @@ const RegisterFinalPage = ({ history }) => {
   const [userInfo, setUserInfo] = useState(initialState)
 
   const { name, email, password, confirmPassword, buttonText } = userInfo
+
+  const userDetails = useSelector((state) => state.user)
+
+  useEffect(() => {
+    if (userDetails && userDetails.token) history.push('/')
+  }, [userDetails])
 
   const handleChange = (name) => (e) => {
     setUserInfo({ ...userInfo, [name]: e.target.value })
@@ -66,6 +74,9 @@ const RegisterFinalPage = ({ history }) => {
         confirmPassword: '',
         buttonText: 'Submitted',
       })
+
+      toast.success('Registration successful!')
+
       history.push('/')
     } catch (error) {
       setUserInfo({ ...userInfo, buttonText: 'Submit' })
@@ -73,108 +84,86 @@ const RegisterFinalPage = ({ history }) => {
     }
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   if (password !== confirmPassword)
-  //     return toast.error('Passwords do not match')
-  //   setUserInfo({ ...userInfo, buttonText: 'Submitting' })
-  //   axios({
-  //     method: 'POST',
-  //     url: `${process.env.REACT_APP_API}/register`,
-  //     data: { name, email, password },
-  //   })
-  //     .then((resp) => {
-  //       setUserInfo({
-  //         ...userInfo,
-  //         name: '',
-  //         email: '',
-  //         password: '',
-  //         confirmPassword: '',
-  //         buttonText: 'Submitted',
-  //       })
-  //       toast.success(resp.data.message)
-  //     })
-  //     .catch((err) => {
-  //       setUserInfo({ ...userInfo, buttonText: 'Submit' })
-  //       toast.error(err.response.data.error)
-  //     })
-  // }
-
   return (
-    <div className='container p-5'>
-      <div className='col-md-6 offset-md-3'>
-        <h1 className='p-5 text-center'>Complete Registration</h1>
-        <form>
+    <div className='col-md-6 offset-md-3 p-5'>
+      <Card>
+        <h1 className='pt-5 text-center'>Complete Registration</h1>
+        <form className='p-4'>
           <div className='form-group'>
-            <label className='text-muted'>Name</label>
             <input
               onChange={handleChange('name')}
               value={name}
               type='text'
-              className='form-control'
+              className='form-control input-background p-3'
+              placeholder='Name'
               autoFocus
             />
+            <label>Name</label>
           </div>
 
           <div className='form-group'>
-            <label className='text-muted'>Email</label>
             <input
               value={email}
               type='email'
-              className='form-control'
+              className='form-control input-background p-3'
               disabled
             />
+            <label>Email</label>
           </div>
 
           <div className='form-group'>
-            <label className='text-muted'>Password</label>
             <input
               onChange={handleChange('password')}
               value={password}
               type='password'
-              className='form-control'
+              className='form-control input-background p-3'
+              placeholder='Password'
             />
+            <label>Password</label>
           </div>
 
           <div className='form-group'>
-            <label className='text-muted'>Confirm Password</label>
             <input
               onChange={handleChange('confirmPassword')}
               value={confirmPassword}
               type='password'
-              className='form-control'
+              className='form-control input-background p-3'
+              placeholder='Confirm Password'
             />
+            <label>Confirm Password</label>
           </div>
 
-          <div>
-            <button
-              disabled={
-                !email ||
-                !password ||
-                !name ||
-                !confirmPassword ||
-                buttonText === 'Submitted' ||
-                buttonText === 'Submitting'
-              }
-              onClick={handleSubmit}
-              className='btn btn-primary btn-raised mr-3'
-            >
-              {buttonText}
-            </button>
+          <Button
+            disabled={
+              !email ||
+              !password ||
+              !name ||
+              !confirmPassword ||
+              buttonText === 'Submitted' ||
+              buttonText === 'Submitting'
+            }
+            onClick={handleSubmit}
+            block
+            shape='round'
+            size='large'
+            className='btn btn-primary btn-raised mt-3 mb-3'
+          >
+            {buttonText}
+          </Button>
 
+          <div className='d-flex justify-content-center align-items-center mt-3'>
             <Link
               to='/authentication/forgot-password'
               className='btn btn-sm btn-outline-danger'
             >
               Forgot Password?
             </Link>
+            <Link to='/login' className='btn btn-sm btn-outline-primary ml-5'>
+              Have an account? Log In
+            </Link>
           </div>
-
-          <Link to='/login' className='btn btn-sm btn-outline-primary mt-3'>
-            Have an account? Log In
-          </Link>
         </form>
-      </div>
+      </Card>
     </div>
   )
 }
