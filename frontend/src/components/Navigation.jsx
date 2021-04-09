@@ -32,7 +32,7 @@ const Navigation = () => {
         <Link to='/login'>Log In</Link>
       </Item>
 
-      <SubMenu key='SubMenu' icon={<AppstoreOutlined />} title='Register'>
+      <SubMenu key='SubMenu' icon={<AppstoreOutlined />} title='User'>
         <Item key='setting:1'>Option 1</Item>
         <Item key='setting:2'>Option 2</Item>
       </SubMenu>
