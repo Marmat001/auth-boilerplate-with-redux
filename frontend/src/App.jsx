@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 import { useDispatch } from 'react-redux'
 import { authentication } from './firebase.js'
 import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx'
+import { getUserInfo } from './helperFunctions/authFunction.js'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -20,15 +21,24 @@ const App = () => {
 
       const token = await user.getIdTokenResult()
 
-      dispatch({
-        type: 'AUTHENTICATED_USER',
-        payload: {
-          email: user.email,
-          token: token.token,
-        },
-      })
+      getUserInfo(token.token)
+        .then((resp) =>
+          dispatch({
+            type: 'AUTHENTICATED_USER',
+            payload: {
+              email: resp.data.email,
+              name: resp.data.name,
+              token: token.token,
+              _id: resp.data._id,
+              role: resp.data.role,
+            },
+          })
+        )
+        .catch((error) => console.log(error))
     })
-  }, [])
+
+    return () => stateChange()
+  }, [dispatch])
 
   return (
     <>

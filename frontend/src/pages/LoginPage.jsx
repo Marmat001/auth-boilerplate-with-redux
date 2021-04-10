@@ -5,6 +5,7 @@ import { Button, Card } from 'antd'
 import { MailOutlined, GoogleOutlined } from '@ant-design/icons'
 import { authentication, googleAuthProvider } from '../firebase'
 import { useDispatch, useSelector } from 'react-redux'
+import { createUpdateUserInfo } from '../helperFunctions/authFunction'
 
 const initialState = {
   email: 'markusmatu96@gmail.com',
@@ -42,13 +43,20 @@ const LogInPage = ({ history }) => {
 
       const token = await user.getIdTokenResult()
 
-      dispatch({
-        type: 'AUTHENTICATED_USER',
-        payload: {
-          email: user.email,
-          token: token.token,
-        },
-      })
+      createUpdateUserInfo(token.token)
+        .then((resp) =>
+          dispatch({
+            type: 'AUTHENTICATED_USER',
+            payload: {
+              email: resp.data.email,
+              name: resp.data.name,
+              token: token.token,
+              _id: resp.data._id,
+              role: resp.data.role,
+            },
+          })
+        )
+        .catch((error) => console.log(error))
 
       history.push('/')
     } catch (error) {
@@ -65,13 +73,20 @@ const LogInPage = ({ history }) => {
 
         const token = await user.getIdTokenResult()
 
-        dispatch({
-          type: 'AUTHENTICATED_USER',
-          payload: {
-            email: user.email,
-            token: token.token,
-          },
-        })
+        createUpdateUserInfo(token.token)
+          .then((resp) =>
+            dispatch({
+              type: 'AUTHENTICATED_USER',
+              payload: {
+                email: resp.data.email,
+                name: resp.data.name,
+                token: token.token,
+                _id: resp.data._id,
+                role: resp.data.role,
+              },
+            })
+          )
+          .catch((error) => console.log(error))
 
         history.push('/')
       })
@@ -103,7 +118,7 @@ const LogInPage = ({ history }) => {
               onChange={handleChange('password')}
               value={password}
               type='password'
-              className='form-control input-background p-3'
+              className='form-control input-background p-3 mb-4'
               placeholder='Password'
             />
             <label>Password</label>

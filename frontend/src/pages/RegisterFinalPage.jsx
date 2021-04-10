@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { authentication } from '../firebase'
 import { toast } from 'react-toastify'
 import { Card, Button } from 'antd'
+import { createUpdateUserInfo } from '../helperFunctions/authFunction'
 
 const initialState = {
   name: 'Markus',
@@ -14,6 +15,8 @@ const initialState = {
 }
 
 const RegisterFinalPage = ({ history }) => {
+  const dispatch = useDispatch()
+
   const [userInfo, setUserInfo] = useState(initialState)
 
   const { name, email, password, confirmPassword, buttonText } = userInfo
@@ -64,7 +67,20 @@ const RegisterFinalPage = ({ history }) => {
 
       const token = await user.getIdTokenResult()
 
-      console.log(user, token)
+      createUpdateUserInfo(token.token)
+        .then((resp) =>
+          dispatch({
+            type: 'AUTHENTICATED_USER',
+            payload: {
+              email: resp.data.email,
+              name: resp.data.name,
+              token: token.token,
+              _id: resp.data._id,
+              role: resp.data.role,
+            },
+          })
+        )
+        .catch((error) => console.log(error))
 
       setUserInfo({
         ...userInfo,
