@@ -25,7 +25,7 @@ const RegisterFinalPage = ({ history }) => {
 
   useEffect(() => {
     if (userDetails && userDetails.token) history.push('/')
-  }, [userDetails])
+  }, [userDetails, history])
 
   const handleChange = (name) => (e) => {
     setUserInfo({ ...userInfo, [name]: e.target.value })
@@ -36,7 +36,7 @@ const RegisterFinalPage = ({ history }) => {
       ...userInfo,
       email: window.localStorage.getItem('registrationEmail'),
     })
-  }, [])
+  }, [userInfo])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

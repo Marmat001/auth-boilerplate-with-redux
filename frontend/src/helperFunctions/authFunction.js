@@ -25,3 +25,16 @@ export const getUserInfo = async (token) => {
     }
   )
 }
+
+
+export const getAdminInfo = async (token) => {
+  return await axios.post(
+    `${process.env.REACT_APP_API}/admin/get-info`,
+    {},
+    {
+      headers: {
+        token,
+      },
+    }
+  )
+}

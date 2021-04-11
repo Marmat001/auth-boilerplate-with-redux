@@ -18,7 +18,7 @@ const ForgotPasswordPage = ({ history }) => {
 
   useEffect(() => {
     if (userDetails && userDetails.token) history.push('/')
-  }, [userDetails])
+  }, [userDetails, history])
 
   const handleChange = (name) => (e) => {
     setUserInfo({ ...userInfo, [name]: e.target.value })

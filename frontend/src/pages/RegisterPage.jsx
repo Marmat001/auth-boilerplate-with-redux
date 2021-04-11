@@ -13,7 +13,7 @@ const RegisterPage = ({ history }) => {
 
   useEffect(() => {
     if (userDetails && userDetails.token) history.push('/')
-  }, [userDetails])
+  }, [userDetails, history])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

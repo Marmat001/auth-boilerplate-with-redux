@@ -11,6 +11,12 @@ import { useDispatch } from 'react-redux'
 import { authentication } from './firebase.js'
 import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx'
 import { getUserInfo } from './helperFunctions/authFunction.js'
+import UserDashboardPage from './pages/UserDashboardPage.jsx'
+import AdminDashboardPage from './pages/AdminDashboardPage.jsx'
+import UserRoute from './components/UserRoute.jsx'
+import WishlistPage from './pages/WishlistPage.js'
+import UpdateProfilePage from './pages/UpdateProfilePage.jsx'
+import AdminRoute from './components/AdminRoute.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -46,6 +52,18 @@ const App = () => {
       <Navigation />
       <Switch>
         <Route component={HomePage} path='/' exact />
+        <UserRoute component={UserDashboardPage} path='/user/dashboard' exact />
+        <UserRoute
+          component={UpdateProfilePage}
+          path='/user/update-profile'
+          exact
+        />
+        <UserRoute component={WishlistPage} path='/user/wishlist' exact />
+        <AdminRoute
+          component={AdminDashboardPage}
+          path='/admin/dashboard'
+          exact
+        />
         <Route component={LoginPage} path='/login' exact />
         <Route component={RegisterPage} path='/register' exact />
         <Route component={RegisterFinalPage} path='/register/complete' exact />

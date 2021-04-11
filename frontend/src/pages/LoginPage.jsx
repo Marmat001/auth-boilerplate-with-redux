@@ -23,10 +23,18 @@ const LogInPage = ({ history }) => {
 
   useEffect(() => {
     if (userDetails && userDetails.token) history.push('/')
-  }, [userDetails])
+  }, [userDetails, history])
 
   const handleChange = (name) => (e) => {
     setUserInfo({ ...userInfo, [name]: e.target.value })
+  }
+
+  const redirectBasedOnRole = (resp) => {
+    if (resp.data.role === 'admin') {
+      history.push('/admin/dashboard')
+    } else {
+      history.push('/user/dashboard')
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -44,7 +52,7 @@ const LogInPage = ({ history }) => {
       const token = await user.getIdTokenResult()
 
       createUpdateUserInfo(token.token)
-        .then((resp) =>
+        .then((resp) => {
           dispatch({
             type: 'AUTHENTICATED_USER',
             payload: {
@@ -55,10 +63,9 @@ const LogInPage = ({ history }) => {
               role: resp.data.role,
             },
           })
-        )
+          redirectBasedOnRole(resp)
+        })
         .catch((error) => console.log(error))
-
-      history.push('/')
     } catch (error) {
       setUserInfo({ ...userInfo, buttonText: 'Log In' })
       toast.error(error.message)
@@ -74,7 +81,7 @@ const LogInPage = ({ history }) => {
         const token = await user.getIdTokenResult()
 
         createUpdateUserInfo(token.token)
-          .then((resp) =>
+          .then((resp) => {
             dispatch({
               type: 'AUTHENTICATED_USER',
               payload: {
@@ -85,10 +92,10 @@ const LogInPage = ({ history }) => {
                 role: resp.data.role,
               },
             })
-          )
-          .catch((error) => console.log(error))
+            redirectBasedOnRole(resp)
+          })
 
-        history.push('/')
+          .catch((error) => console.log(error))
       })
       .catch((error) => {
         setUserInfo({ ...userInfo, buttonText: 'Log In' })
