@@ -61,8 +61,18 @@ const Navigation = () => {
           title={userInfo.email && userInfo.email.split('@')[0]}
           className='float-right'
         >
-          <Item key='setting:1'>Option 1</Item>
-          <Item key='setting:2'>Option 2</Item>
+          {userInfo && userInfo.role === 'adventurer' && (
+            <Item>
+              <Link to='/user/dashboard'>Dashboard</Link>
+            </Item>
+          )}
+
+          {userInfo && userInfo.role === 'admin' && (
+            <Item>
+              <Link to='/admin/dashboard'>Dashboard</Link>
+            </Item>
+          )}
+
           <Item icon={<LogoutOutlined />} onClick={logoutHandler}>
             Log Out
           </Item>

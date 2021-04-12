@@ -107,7 +107,7 @@ const LogInPage = ({ history }) => {
     <div className='col-md-6 offset-md-3 p-5'>
       <Card>
         <h1 className='pt-5 text-center'>Log In</h1>
-        <form className='form-background p-4'>
+        <form onSubmit={handleSubmit} className='form-background p-4'>
           <div className='form-group'>
             <input
               onChange={handleChange('email')}

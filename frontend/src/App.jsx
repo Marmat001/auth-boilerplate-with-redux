@@ -14,9 +14,11 @@ import { getUserInfo } from './helperFunctions/authFunction.js'
 import UserDashboardPage from './pages/UserDashboardPage.jsx'
 import AdminDashboardPage from './pages/AdminDashboardPage.jsx'
 import UserRoute from './components/UserRoute.jsx'
-import WishlistPage from './pages/WishlistPage.js'
+import WishlistPage from './pages/WishlistPage.jsx'
 import UpdateProfilePage from './pages/UpdateProfilePage.jsx'
 import AdminRoute from './components/AdminRoute.jsx'
+import AddContinentPage from './pages/AddContinentPage.jsx'
+import UpdateContinentPage from './pages/UpdateContinentPage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -70,6 +72,17 @@ const App = () => {
         <Route
           component={ForgotPasswordPage}
           path='/authentication/forgot-password'
+          exact
+        />
+        <AdminRoute
+          component={AddContinentPage}
+          path='/admin/continent'
+          exact
+        />
+
+        <AdminRoute
+          component={UpdateContinentPage}
+          path='/admin/continent/:slug'
           exact
         />
       </Switch>

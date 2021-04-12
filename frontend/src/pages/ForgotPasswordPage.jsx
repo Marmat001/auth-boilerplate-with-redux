@@ -50,7 +50,7 @@ const ForgotPasswordPage = ({ history }) => {
     <div className='col-md-6 offset-md-3 p-5'>
       <Card>
         <h1 className='pt-5 text-center'>Forgot Password</h1>
-        <form className='p-4'>
+        <form onSubmit={handleSubmit} className='p-4'>
           <div className='form-group'>
             <input
               onChange={handleChange('email')}

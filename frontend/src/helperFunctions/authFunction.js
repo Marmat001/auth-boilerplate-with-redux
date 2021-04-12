@@ -12,8 +12,6 @@ export const createUpdateUserInfo = async (token) => {
   )
 }
 
-
-
 export const getUserInfo = async (token) => {
   return await axios.post(
     `${process.env.REACT_APP_API}/user/get-info`,
@@ -25,7 +23,6 @@ export const getUserInfo = async (token) => {
     }
   )
 }
-
 
 export const getAdminInfo = async (token) => {
   return await axios.post(

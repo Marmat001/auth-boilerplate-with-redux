@@ -38,7 +38,7 @@ const RegisterPage = ({ history }) => {
       <Card>
         <h1 className='pt-5 text-center'>Register</h1>
 
-        <form className='form-background p-4'>
+        <form onSubmit={handleSubmit} className='form-background p-4'>
           <div className='form-group'>
             <input
               onChange={(e) => setEmail(e.target.value)}

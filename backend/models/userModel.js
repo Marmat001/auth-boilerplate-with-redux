@@ -1,5 +1,5 @@
-import mongoose from "mongoose"
-const { ObjectId } = mongoose.Schema;
+import mongoose from 'mongoose'
+const { ObjectId } = mongoose.Schema
 
 const userSchema = new mongoose.Schema(
   {
@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      default: "adventurer",
+      default: 'adventurer',
     },
     address: String,
     cart: {
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
     // wishlist: [{ type: ObjectId, ref: "Destination" }],
   },
   { timestamps: true }
-);
+)
 
 const User = mongoose.model('User', userSchema)
 

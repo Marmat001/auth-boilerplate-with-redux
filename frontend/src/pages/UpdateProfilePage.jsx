@@ -19,7 +19,7 @@ const UpdateProfilePage = () => {
     setUserInfo({ ...userInfo, [name]: e.target.value })
   }
 
-  const handleClick = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (password !== confirmPassword)
@@ -57,7 +57,7 @@ const UpdateProfilePage = () => {
           <div className='d-flex'>
             <Card className='col-md-9'>
               <h3>Update Password</h3>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className='form-group'>
                   <input
                     type='password'
@@ -88,7 +88,7 @@ const UpdateProfilePage = () => {
 
           <div className='text-center'>
             <Button
-              onClick={handleClick}
+              onClick={handleSubmit}
               shape='round'
               size='large'
               block
