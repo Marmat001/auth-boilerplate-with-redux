@@ -10,7 +10,7 @@ const SearchQuery = ({ query, setQuery }) => {
         placeholder='Filter by search'
         value={query}
         onChange={handleSearch}
-        className='form-control input-background p-2 w-50'
+        className='form-control input-background p-2 w-50 mb-3'
       />
       <label>Filter by search</label>
     </div>

@@ -19,6 +19,8 @@ import UpdateProfilePage from './pages/UpdateProfilePage.jsx'
 import AdminRoute from './components/AdminRoute.jsx'
 import AddContinentPage from './pages/AddContinentPage.jsx'
 import UpdateContinentPage from './pages/UpdateContinentPage.jsx'
+import AddCountryPage from './pages/AddCountryPage.jsx'
+import UpdateCountryPage from './pages/UpdateCountryPage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -83,6 +85,14 @@ const App = () => {
         <AdminRoute
           component={UpdateContinentPage}
           path='/admin/continent/:slug'
+          exact
+        />
+
+        <AdminRoute component={AddCountryPage} path='/admin/country' exact />
+
+        <AdminRoute
+          component={UpdateCountryPage}
+          path='/admin/country/:slug'
           exact
         />
       </Switch>

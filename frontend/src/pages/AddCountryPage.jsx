@@ -3,40 +3,46 @@ import AdminNavigation from '../components/AdminNavigation'
 import { useSelector } from 'react-redux'
 import { Button } from 'antd'
 import {
-  getContinents,
-  removeContinent,
-  addContinent,
-} from '../helperFunctions/continentFunctions'
+  getCountries,
+  removeCountry,
+  addCountry,
+} from '../helperFunctions/countryFunctions'
+import { getContinents } from '../helperFunctions/continentFunctions'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import SearchQuery from '../components/SearchQuery'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
-const AddContinentPage = () => {
+const AddCountryPage = () => {
   const user = useSelector((state) => state.user)
 
   const [name, setName] = useState('')
   const [query, setQuery] = useState('')
   const [buttonText, setButtonText] = useState('Save')
   const [continents, setContinents] = useState([])
+  const [continent, setContinent] = useState('')
+  const [countries, setCountries] = useState([])
 
   useEffect(() => {
     importContinents()
+    importCountries()
   }, [])
 
   const importContinents = () =>
     getContinents().then((c) => setContinents(c.data))
 
+  const importCountries = () => getCountries().then((c) => setCountries(c.data))
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setButtonText('Submitting')
 
-    addContinent({ name }, user.token)
+    addCountry({ name, parent: continent }, user.token)
       .then((resp) => {
         setName('')
         setButtonText('Submit')
         toast.success(`"${resp.data.name}" has been created!`)
-        importContinents()
+        importCountries()
       })
       .catch((error) => {
         setButtonText('Submit')
@@ -46,10 +52,10 @@ const AddContinentPage = () => {
 
   const handleContinentRemoval = async (slug) => {
     if (window.confirm('Are you sure?'))
-      removeContinent(slug, user.token)
+      removeCountry(slug, user.token)
         .then((resp) => {
           toast.error(`"${resp.data.name}" has been deleted`)
-          importContinents()
+          importCountries()
         })
         .catch((error) => {
           if (error.response.status === 400) toast.error(error.response.data)
@@ -65,7 +71,24 @@ const AddContinentPage = () => {
           <AdminNavigation />
         </div>
         <div className='col mt-3'>
-          <h4>Add Continent</h4>
+          <h4>Add Country</h4>
+
+          <div className='form-group'>
+            <select
+              name='continent'
+              className='form-control input-background pl-3'
+              onChange={(e) => setContinent(e.target.value)}
+            >
+              <option>Select continent</option>
+              {continents.length > 0 &&
+                continents.map((c) => (
+                  <option key={c._id} value={c._id}>
+                    {c.name}
+                  </option>
+                ))}
+            </select>
+            <label className='mt-3'>Choose continent</label>
+          </div>
 
           <form onSubmit={handleSubmit}>
             <div className='form-group'>
@@ -76,9 +99,9 @@ const AddContinentPage = () => {
                 value={name}
                 autoFocus
                 required
-                placeholder='Name of continent'
+                placeholder='Name of country'
               />
-              <label>Name of continent</label>
+              <label>Name of country</label>
               <br />
             </div>
 
@@ -92,14 +115,14 @@ const AddContinentPage = () => {
           </form>
 
           <SearchQuery query={query} setQuery={setQuery} />
-          <hr />
-          {continents.filter(searchedValue(query)).map((c) => (
+
+          {countries.filter(searchedValue(query)).map((c) => (
             <div className='alert continent-fill w-50' key={c._id}>
               {c.name}
               <span onClick={() => handleContinentRemoval(c.slug)}>
                 <DeleteOutlined className='btn btn-danger btn-raised float-right ml-3' />
               </span>
-              <Link to={`/admin/continent/${c.slug}`}>
+              <Link to={`/admin/country/${c.slug}`}>
                 <span>
                   <EditOutlined className='btn btn-primary btn-raised float-right' />
                 </span>
@@ -112,4 +135,4 @@ const AddContinentPage = () => {
   )
 }
 
-export default AddContinentPage
+export default AddCountryPage

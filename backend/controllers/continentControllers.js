@@ -4,8 +4,7 @@ import slugify from 'slugify'
 export const add = async (req, res) => {
   const { name } = req.body
   try {
-    const continent = await new Continent({ name, slug: slugify(name) }).save()
-    res.json(continent)
+    res.json(await new Continent({ name, slug: slugify(name) }).save())
   } catch (error) {
     res.status(400).send('Continent creation unsuccessful')
   }
