@@ -21,6 +21,7 @@ import AddContinentPage from './pages/AddContinentPage.jsx'
 import UpdateContinentPage from './pages/UpdateContinentPage.jsx'
 import AddCountryPage from './pages/AddCountryPage.jsx'
 import UpdateCountryPage from './pages/UpdateCountryPage.jsx'
+import AddTourPage from './pages/AddTourPage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -95,6 +96,8 @@ const App = () => {
           path='/admin/country/:slug'
           exact
         />
+
+        <AdminRoute component={AddTourPage} path='/admin/tour' exact />
       </Switch>
     </>
   )

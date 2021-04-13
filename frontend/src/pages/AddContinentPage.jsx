@@ -65,7 +65,9 @@ const AddContinentPage = () => {
           <AdminNavigation />
         </div>
         <div className='col mt-3'>
-          <h4>Add Continent</h4>
+          <div className='text-center'>
+            <h1 className='primary-heading'>Add Continent</h1>
+          </div>
 
           <form onSubmit={handleSubmit}>
             <div className='form-group'>

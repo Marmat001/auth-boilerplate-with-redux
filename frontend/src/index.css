@@ -1,13 +1,20 @@
 .input-background {
-  background-color: #fff;
-  border-radius: 10px;
-  border-bottom: 5px;
+  background-color: #fff !important;
+  border-radius: 10px !important;
+  border-bottom: 5px !important;
 }
 
 .input-background:focus {
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
+.ant-picker-input > input {
+  color: #495057 !important;
+}
+
+.ant-picker-input > input::placeholder {
+  color: #495057 !important;
+}
 .form-group {
   font-size: 1.2rem;
   font-weight: 700;
@@ -22,6 +29,7 @@
   transition: all 0.3s;
   padding: 0.75rem;
 }
+
 .form-control:placeholder-shown + label {
   opacity: 0;
   visibility: hidden;
@@ -35,4 +43,11 @@
 
 .continent-fill {
   background-color: #177ddc;
+}
+
+.primary-heading {
+  background-image: linear-gradient(to right, #177ddc, #0219e6);
+  background-clip: text;
+  color: transparent;
+  font-size: 2.5rem;
 }

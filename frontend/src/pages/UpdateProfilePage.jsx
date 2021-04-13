@@ -52,7 +52,7 @@ const UpdateProfilePage = () => {
         </div>
         <Card className='col'>
           <div className='text-center mb-5'>
-            <h1>Update Profile</h1>
+            <h1 className='primary-heading'>Update Profile</h1>
           </div>
           <div className='d-flex'>
             <Card className='col-md-9'>

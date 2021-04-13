@@ -71,7 +71,9 @@ const AddCountryPage = () => {
           <AdminNavigation />
         </div>
         <div className='col mt-3'>
-          <h4>Add Country</h4>
+          <div className='text-center'>
+            <h1 className='primary-heading'>Add Country</h1>
+          </div>
 
           <div className='form-group'>
             <select
