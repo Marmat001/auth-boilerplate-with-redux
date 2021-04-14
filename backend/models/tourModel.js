@@ -70,6 +70,19 @@ const tourSchema = new mongoose.Schema(
     startDate: {
       type: Date,
     },
+    // locations: [
+    //   {
+    //     type: {
+    //       type: String,
+    //       default: 'Mark',
+    //       enum: ['Mark'],
+    //     },
+    //     coordinates: [Number],
+    //     address: String,
+    //     description: String,
+    //     day: Number,
+    //   },
+    // ],
   },
 
   { timestamps: true }

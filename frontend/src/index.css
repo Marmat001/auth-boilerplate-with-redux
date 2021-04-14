@@ -56,3 +56,17 @@
   color: #177ddc !important;
   font-size: 5rem;
 }
+
+.active {
+  background-color: #177ddc;
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+/* .active:hover {
+  background-color: #fff;
+  color: #177ddc;
+} */
