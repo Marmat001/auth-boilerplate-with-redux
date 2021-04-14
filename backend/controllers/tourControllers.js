@@ -3,7 +3,6 @@ import slugify from 'slugify'
 
 export const add = async (req, res) => {
   try {
-    console.log(req.body)
     req.body.slug = slugify(req.body.title)
     res.json(await new Tour(req.body).save())
   } catch (error) {

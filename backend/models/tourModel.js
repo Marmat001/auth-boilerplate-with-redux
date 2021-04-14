@@ -17,6 +17,10 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    difficulty: {
+      type: String,
+      enum: ['Easy', 'Medium', 'Hard', 'Extreme'],
+    },
     // ratingsAmount: {
     //   type: Number,
     //   default: 0,
@@ -50,16 +54,16 @@ const tourSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    // continent: {
-    //   type: ObjectId,
-    //   ref: 'Continent',
-    // },
-    // country: [
-    //   {
-    //     type: ObjectId,
-    //     ref: 'Country',
-    //   },
-    // ],
+    continent: {
+      type: ObjectId,
+      ref: 'Continent',
+    },
+    country: [
+      {
+        type: ObjectId,
+        ref: 'Country',
+      },
+    ],
     // images: {
     //   type: Array,
     // },

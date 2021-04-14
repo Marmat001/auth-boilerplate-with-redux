@@ -26,3 +26,7 @@ export const addContinent = async (continent, token) =>
       token,
     },
   })
+
+
+  export const getContinentsCountries = async (id) =>
+  await axios.get(`${process.env.REACT_APP_API}/continent/countries/${id}`)

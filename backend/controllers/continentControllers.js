@@ -1,4 +1,5 @@
 import Continent from '../models/continentModel'
+import Country from '../models/countryModel'
 import slugify from 'slugify'
 
 export const add = async (req, res) => {
@@ -39,4 +40,12 @@ export const remove = async (req, res) => {
   } catch (error) {
     res.status(400).send('Removal of continent unsuccessful')
   }
+}
+
+
+export const getCountries = async (req, res) => {
+Country.find({parent: req.params._id}).exec((error, countries) => {
+  if(error) console.log(error)
+  res.json(countries)
+})
 }
