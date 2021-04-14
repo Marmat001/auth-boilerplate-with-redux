@@ -64,9 +64,9 @@ const tourSchema = new mongoose.Schema(
         ref: 'Country',
       },
     ],
-    // images: {
-    //   type: Array,
-    // },
+    images: {
+      type: Array,
+    },
     startDate: {
       type: Date,
     },

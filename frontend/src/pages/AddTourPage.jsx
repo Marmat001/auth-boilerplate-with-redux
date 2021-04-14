@@ -7,8 +7,10 @@ import {
   getContinents,
   getContinentsCountries,
 } from '../helperFunctions/continentFunctions'
+import { LoadingOutlined } from '@ant-design/icons'
 
 import AddTourForm from '../components/AddTourForm'
+import UploadImages from '../components/UploadImages'
 
 const initialState = {
   title: '',
@@ -29,6 +31,7 @@ const AddTourPage = ({ history }) => {
   const [tourInfo, setTourInfo] = useState(initialState)
   const [countryOptions, setcountryOptions] = useState([])
   const [displayCountries, setDisplayCountries] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const user = useSelector((state) => state.user)
 
@@ -75,7 +78,20 @@ const AddTourPage = ({ history }) => {
         </div>
         <div className='col mt-3'>
           <div className='text-center'>
-            <h1 className='primary-heading'>Add Tour</h1>
+            {loading ? (
+              <LoadingOutlined className='loading-spinner' />
+            ) : (
+              <h1 className='primary-heading'>Add Tour</h1>
+            )}
+          </div>
+
+          <div className='p-3'>
+            <UploadImages
+              tourInfo={tourInfo}
+              setTourInfo={setTourInfo}
+              loading={loading}
+              setLoading={setLoading}
+            />
           </div>
 
           <AddTourForm

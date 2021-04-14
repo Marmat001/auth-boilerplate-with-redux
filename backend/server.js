@@ -30,7 +30,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(cors({ origin: 'http://localhost:3000' }))
 }
 
-app.use(express.json())
+app.use(express.json({limit: '50mb'}));
+
 
 readdirSync('./backend/routes').map((r) =>
   app.use('/api', require('./routes/' + r))
