@@ -51,10 +51,10 @@ const UpdateProfilePage = () => {
   return (
     <div className='container-fluid'>
       <div className='row'>
-        <div className='col-md-2 text-center pt-4 nav-border'>
+        <div className='col-md-2 text-center'>
           {user.role === 'admin' ? <AdminNavigation /> : <UserNavigation />}
         </div>
-        <Card className='col'>
+        <Card className='col h-100'>
           <div className='text-center mb-5'>
             <h1 className='primary-heading'>Update Profile</h1>
           </div>

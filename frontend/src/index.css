@@ -74,3 +74,14 @@
   background-clip: text !important;
   color: transparent !important;
 }
+
+.nav-anim {
+  transform: translateX(-100%);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.active-nav {
+  transform: translateX(0);
+  opacity: 1;
+}
