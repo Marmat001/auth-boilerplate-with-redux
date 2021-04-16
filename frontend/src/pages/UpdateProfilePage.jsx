@@ -3,6 +3,8 @@ import UserNavigation from '../components/UserNavigation'
 import { Button, Card } from 'antd'
 import { toast } from 'react-toastify'
 import { authentication } from '../firebase'
+import { useSelector } from 'react-redux'
+import AdminNavigation from '../components/AdminNavigation'
 
 const initialState = {
   password: 'abohassan',
@@ -14,6 +16,8 @@ const UpdateProfilePage = () => {
   const [userInfo, setUserInfo] = useState(initialState)
 
   const { password, confirmPassword, buttonText } = userInfo
+
+  const user = useSelector((state) => state.user)
 
   const handleChange = (name) => (e) => {
     setUserInfo({ ...userInfo, [name]: e.target.value })
@@ -48,7 +52,7 @@ const UpdateProfilePage = () => {
     <div className='container-fluid'>
       <div className='row'>
         <div className='col-md-2 text-center pt-4 nav-border'>
-          <UserNavigation />
+          {user.role === 'admin' ? <AdminNavigation /> : <UserNavigation />}
         </div>
         <Card className='col'>
           <div className='text-center mb-5'>

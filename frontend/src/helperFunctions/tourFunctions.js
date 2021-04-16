@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// export const getContinents = async () =>
-//   await axios.get(`${process.env.REACT_APP_API}/continents`)
+export const getAllTours = async (amount) =>
+  await axios.get(`${process.env.REACT_APP_API}/tours/${amount}`)
 
 // export const getContinent = async (slug) =>
 //   await axios.get(`${process.env.REACT_APP_API}/continent/${slug}`)
@@ -26,3 +26,6 @@ export const addTour = async (tour, token) =>
       token,
     },
   })
+
+
+  

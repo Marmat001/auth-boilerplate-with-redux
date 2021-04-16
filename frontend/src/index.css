@@ -66,7 +66,11 @@
   color: #fff;
 }
 
-/* .active:hover {
-  background-color: #fff;
-  color: #177ddc;
-} */
+.ant-card-meta-title {
+  font-size: 32px !important;
+  text-align: center;
+
+  background-image: linear-gradient(to right, #1226d6, #8bc0f1) !important;
+  background-clip: text !important;
+  color: transparent !important;
+}

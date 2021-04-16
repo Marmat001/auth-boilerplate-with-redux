@@ -13,7 +13,22 @@ export const add = async (req, res) => {
 }
 
 export const getAllTours = async (req, res) => {
-  res.json(await Tour.find({}))
+  const tours = await Tour.find({})
+    .limit(parseInt(req.params.amount))
+    .populate('continent')
+    .populate('country')
+    .sort([['createdAt', 'desc']])
+    .exec()
+
+  res.json(tours)
 }
 
-//.populate('continent'))
+
+export const remove = async (req, res) => {
+  try {
+    res.json(await Tour.findOneAndRemove({slug: req.params.slug}).exec())
+  } catch (error) {
+    console.log(error)
+    return res.status(400).send("Removal of tour unsuccessful")
+  }
+}

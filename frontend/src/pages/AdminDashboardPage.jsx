@@ -1,4 +1,3 @@
-import React from 'react'
 import AdminNavigation from '../components/AdminNavigation'
 
 const AdminDashboardPage = () => {
@@ -8,7 +7,8 @@ const AdminDashboardPage = () => {
         <div className='col-md-2 text-center pt-4 nav-border pb-3'>
           <AdminNavigation />
         </div>
-        <div className='col'>Admin Page</div>
+
+        <div className='col mt-3'>Admin Dashboard</div>
       </div>
     </div>
   )

@@ -22,6 +22,7 @@ import UpdateContinentPage from './pages/UpdateContinentPage.jsx'
 import AddCountryPage from './pages/AddCountryPage.jsx'
 import UpdateCountryPage from './pages/UpdateCountryPage.jsx'
 import AddTourPage from './pages/AddTourPage.jsx'
+import ToursPage from './pages/ToursPage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -69,6 +70,12 @@ const App = () => {
           path='/admin/dashboard'
           exact
         />
+
+        <AdminRoute
+          component={UpdateProfilePage}
+          path='/admin/update-profile'
+          exact
+        />
         <Route component={LoginPage} path='/login' exact />
         <Route component={RegisterPage} path='/register' exact />
         <Route component={RegisterFinalPage} path='/register/complete' exact />
@@ -98,6 +105,7 @@ const App = () => {
         />
 
         <AdminRoute component={AddTourPage} path='/admin/tour' exact />
+        <AdminRoute component={ToursPage} path='/admin/tours' exact />
       </Switch>
     </>
   )
