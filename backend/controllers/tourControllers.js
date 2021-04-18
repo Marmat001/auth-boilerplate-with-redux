@@ -23,12 +23,20 @@ export const getAllTours = async (req, res) => {
   res.json(tours)
 }
 
-
 export const remove = async (req, res) => {
   try {
-    res.json(await Tour.findOneAndRemove({slug: req.params.slug}).exec())
+    res.json(await Tour.findOneAndRemove({ slug: req.params.slug }).exec())
   } catch (error) {
     console.log(error)
-    return res.status(400).send("Removal of tour unsuccessful")
+    return res.status(400).send('Removal of tour unsuccessful')
   }
+}
+
+export const getTourInfo = async (req, res) => {
+  res.json(
+    await Tour.findOne({ slug: req.params.slug })
+      .populate('continent')
+      .populate('country')
+      .exec()
+  )
 }

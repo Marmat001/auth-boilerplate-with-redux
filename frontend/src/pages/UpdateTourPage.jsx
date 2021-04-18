@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import AdminNavigation from '../components/AdminNavigation'
 import { useSelector } from 'react-redux'
-import { addTour } from '../helperFunctions/tourFunctions'
+import { addTour, getTour } from '../helperFunctions/tourFunctions'
 import { toast } from 'react-toastify'
 import {
   getContinents,
@@ -9,14 +9,13 @@ import {
 } from '../helperFunctions/continentFunctions'
 import { LoadingOutlined } from '@ant-design/icons'
 
-import AddTourForm from '../components/AddTourForm'
 import UploadImages from '../components/UploadImages'
+import UpdateTourForm from '../components/UpdateTourForm'
 
 const initialState = {
   title: '',
   description: '',
   price: '',
-  continents: [],
   countries: [],
   images: [],
   startDate: '',
@@ -27,28 +26,45 @@ const initialState = {
   difficulty: [],
 }
 
-const AddTourPage = ({ history }) => {
+const UpdateTourPage = ({ history, match }) => {
   const [tourInfo, setTourInfo] = useState(initialState)
+  const [continents, setContinents] = useState([])
   const [countryOptions, setcountryOptions] = useState([])
-  const [displayCountries, setDisplayCountries] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [arrOfCountryIds, setArrOfCountryIds] = useState([])
+  const [selectedContinent, setSelectedContinent] = useState('')
 
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
+    importTours()
     importContinents()
   }, [])
 
+  const importTours = () => {
+    getTour(match.params.slug).then((t) => {
+      setTourInfo({ ...tourInfo, ...t.data })
+      getContinentsCountries(t.data.continent._id).then((resp) => {
+        setcountryOptions(resp.data)
+      })
+
+      let countryIds = []
+      t.data.country.map((c) => {
+        countryIds.push(c._id)
+      })
+
+      setArrOfCountryIds(countryIds)
+    })
+  }
+
   const importContinents = () =>
-    getContinents().then((c) =>
-      setTourInfo({ ...tourInfo, continents: c.data })
-    )
+    getContinents().then((c) => setContinents(c.data))
 
   const handleSubmit = (e) => {
     e.preventDefault()
     addTour(tourInfo, user.token)
       .then((resp) => {
-        toast.success(`"${resp.data.title} has been added!"`)
+        toast.success(`"${resp.data.title} has been updated!"`)
         history.push('/admin/tours')
       })
       .catch((error) => {
@@ -63,11 +79,17 @@ const AddTourPage = ({ history }) => {
 
   const handleContinentChange = (e) => {
     e.preventDefault()
-    setTourInfo({ ...tourInfo, countries: [], continent: e.target.value })
+    setTourInfo({ ...tourInfo, countries: [] })
+
+    setSelectedContinent(e.target.value)
+
     getContinentsCountries(e.target.value).then((resp) => {
       setcountryOptions(resp.data)
     })
-    setDisplayCountries(true)
+    if (tourInfo.continent._id === e.target.value) {
+      importTours()
+    }
+    setArrOfCountryIds([])
   }
 
   return (
@@ -81,7 +103,7 @@ const AddTourPage = ({ history }) => {
             {loading ? (
               <LoadingOutlined className='loading-spinner' />
             ) : (
-              <h1 className='primary-heading'>Add Tour</h1>
+              <h1 className='primary-heading'>Update Tour</h1>
             )}
           </div>
 
@@ -94,14 +116,17 @@ const AddTourPage = ({ history }) => {
             />
           </div>
 
-          <AddTourForm
+          <UpdateTourForm
+            continents={continents}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             tourInfo={tourInfo}
             setTourInfo={setTourInfo}
             handleContinentChange={handleContinentChange}
             countryOptions={countryOptions}
-            displayCountries={displayCountries}
+            arrOfCountryIds={arrOfCountryIds}
+            setArrOfCountryIds={setArrOfCountryIds}
+            selectedContinent={selectedContinent}
           />
         </div>
       </div>
@@ -109,4 +134,4 @@ const AddTourPage = ({ history }) => {
   )
 }
 
-export default AddTourPage
+export default UpdateTourPage

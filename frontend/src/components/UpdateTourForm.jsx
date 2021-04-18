@@ -1,21 +1,23 @@
 import moment from 'moment'
 import { Button, DatePicker } from 'antd'
 
-const AddTourForm = ({
+const UpdateTourForm = ({
   tourInfo,
   setTourInfo,
   handleChange,
   handleSubmit,
   handleContinentChange,
   countryOptions,
-  displayCountries,
+  continents,
+  arrOfCountryIds,
+  setArrOfCountryIds,
+  selectedContinent,
 }) => {
   const {
     title,
     description,
     price,
-    continents,
-    countries,
+    continent,
     images,
     startDate,
     maxPeople,
@@ -64,11 +66,11 @@ const AddTourForm = ({
 
       <div className='form-group'>
         <select
+          value={difficulty}
           name='difficulty'
           className='form-control input-background mt-5 pl-3'
           onChange={handleChange}
         >
-          <option>Select difficulty</option>
           {difficulties.map((d) => (
             <option key={d} value={d}>
               {d}
@@ -110,9 +112,10 @@ const AddTourForm = ({
         />
         <label>Max amount of people</label>
       </div>
-      <div className='form-group'>
+
+      {startDate && (
         <DatePicker
-          style={{ color: 'black' }}
+          defaultValue={moment(startDate, 'YYYY-MM-DD')}
           placeholder='Start Date'
           className='form-control input-background p-3 mt-5'
           onChange={(date, dateString) =>
@@ -122,7 +125,7 @@ const AddTourForm = ({
             currentDate && currentDate.valueOf() < moment().subtract(1, 'days')
           }
         />
-      </div>
+      )}
 
       <div className='form-group'>
         <select
@@ -130,10 +133,26 @@ const AddTourForm = ({
           className='form-control input-background mt-5 pl-3'
           onChange={handleContinentChange}
           placeholder='Select continent'
+          value={selectedContinent ? selectedContinent : continent?._id}
         >
-          <option>Select continent</option>
           {continents.length > 0 &&
             continents.map((c) => (
+              <option value={c._id} key={c._id}>
+                {c.name}
+              </option>
+            ))}
+        </select>
+      </div>
+
+      <div className='form-group'>
+        <select
+          name='country'
+          className='form-control input-background mt-5 mb-4 pl-3'
+          onChange={(e) => setArrOfCountryIds(e.target.value)}
+          value={arrOfCountryIds}
+        >
+          {countryOptions.length > 0 &&
+            countryOptions.map((c) => (
               <option key={c._id} value={c._id}>
                 {c.name}
               </option>
@@ -141,23 +160,6 @@ const AddTourForm = ({
         </select>
       </div>
 
-      {displayCountries && (
-        <div className='form-group'>
-          <select
-            name='country'
-            className='form-control input-background mt-5 mb-4 pl-3'
-            onChange={handleChange}
-          >
-            <option>Select country</option>
-            {countryOptions.length > 0 &&
-              countryOptions.map((c) => (
-                <option key={c._id} value={c._id}>
-                  {c.name}
-                </option>
-              ))}
-          </select>
-        </div>
-      )}
       <Button
         onClick={handleSubmit}
         block
@@ -169,4 +171,4 @@ const AddTourForm = ({
   )
 }
 
-export default AddTourForm
+export default UpdateTourForm

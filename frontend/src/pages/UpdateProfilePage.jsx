@@ -14,6 +14,7 @@ const initialState = {
 
 const UpdateProfilePage = () => {
   const [userInfo, setUserInfo] = useState(initialState)
+  const [showNav, setShowNav] = useState(true)
 
   const { password, confirmPassword, buttonText } = userInfo
 
@@ -51,8 +52,12 @@ const UpdateProfilePage = () => {
   return (
     <div className='container-fluid'>
       <div className='row'>
-        <div className='col-md-2 text-center'>
-          {user.role === 'admin' ? <AdminNavigation /> : <UserNavigation />}
+        <div className={`${showNav && 'col-md-2 text-center'}`}>
+          {user.role === 'admin' ? (
+            <AdminNavigation />
+          ) : (
+            <UserNavigation showNav={showNav} setShowNav={setShowNav} />
+          )}
         </div>
         <Card className='col h-100'>
           <div className='text-center mb-5'>

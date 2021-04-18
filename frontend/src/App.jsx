@@ -23,6 +23,7 @@ import AddCountryPage from './pages/AddCountryPage.jsx'
 import UpdateCountryPage from './pages/UpdateCountryPage.jsx'
 import AddTourPage from './pages/AddTourPage.jsx'
 import ToursPage from './pages/ToursPage.jsx'
+import UpdateTourPage from './pages/UpdateTourPage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -106,6 +107,7 @@ const App = () => {
 
         <AdminRoute component={AddTourPage} path='/admin/tour' exact />
         <AdminRoute component={ToursPage} path='/admin/tours' exact />
+        <AdminRoute component={UpdateTourPage} path='/admin/tour/:slug' exact />
       </Switch>
     </>
   )

@@ -1,18 +1,16 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MenuOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 
-const UserNavigation = () => {
+const UserNavigation = ({ showNav, setShowNav }) => {
   const active = window.location.pathname
-  const [showNav, setShowNav] = useState(true)
 
   return (
     <nav className={`${showNav && 'nav-border'}`}>
-      <div className='pt-3'>
+      <div className='pt-3 text-center'>
         <Button
           onClick={() => setShowNav(!showNav)}
-          style={{ width: '100px' }}
+          style={{ width: '110px' }}
           className='btn btn-raised btn'
           type='primary'
           size='large'

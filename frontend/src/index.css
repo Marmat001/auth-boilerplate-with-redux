@@ -38,7 +38,7 @@
 
 .nav-border {
   border-right: 1px solid #177ddc;
-  min-height: 100vh;
+  border-bottom: 1px solid #177ddc;
 }
 
 .continent-fill {

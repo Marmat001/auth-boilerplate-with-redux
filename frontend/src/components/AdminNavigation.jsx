@@ -1,26 +1,12 @@
-import { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { MenuOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
 
 const AdminNavigation = () => {
   const active = window.location.pathname
-  const [showNav, setShowNav] = useState(true)
 
   return (
-    <nav className={`${showNav && 'nav-border'}`}>
-      <div className='pt-3'>
-        <Button
-          onClick={() => setShowNav(!showNav)}
-          style={{ width: '100px' }}
-          className='btn btn-raised btn'
-          type='primary'
-          size='large'
-          shape='round'
-          icon={<MenuOutlined />}
-        ></Button>
-      </div>
-      <ul className={`nav flex-column mt-2 ${!showNav && 'nav-anim'}`}>
+    <nav>
+      <ul className='nav flex-column nav-border'>
         <li className='nav-item'>
           <Link
             to='/admin/dashboard'
@@ -31,6 +17,7 @@ const AdminNavigation = () => {
             Dashboard
           </Link>
         </li>
+
         <li className='nav-item'>
           <Link
             to='/admin/tours'
@@ -41,6 +28,7 @@ const AdminNavigation = () => {
             View Tours
           </Link>
         </li>
+
         <li className='nav-item'>
           <Link
             to='/admin/tour'
@@ -51,6 +39,7 @@ const AdminNavigation = () => {
             Add Tour
           </Link>
         </li>
+
         <li className='nav-item'>
           <Link
             to='/admin/continent'
@@ -61,6 +50,7 @@ const AdminNavigation = () => {
             Add Continent
           </Link>
         </li>
+
         <li className='nav-item'>
           <Link
             to='/admin/country'
@@ -71,6 +61,7 @@ const AdminNavigation = () => {
             Add Country
           </Link>
         </li>
+
         <li className='nav-item'>
           <Link
             to='/admin/coupon'
@@ -81,6 +72,7 @@ const AdminNavigation = () => {
             Add Coupon
           </Link>
         </li>
+
         <li className='nav-item'>
           <Link
             to='/admin/update-profile'
