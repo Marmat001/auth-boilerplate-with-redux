@@ -46,14 +46,17 @@ const AddTourPage = ({ history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setLoading(true)
     addTour(tourInfo, user.token)
       .then((resp) => {
         toast.success(`"${resp.data.title} has been added!"`)
         history.push('/admin/tours')
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error)
         toast.error(error.response.data.error)
+        setLoading(false)
       })
   }
 

@@ -133,7 +133,7 @@ const UpdateTourForm = ({
           className='form-control input-background mt-5 pl-3'
           onChange={handleContinentChange}
           placeholder='Select continent'
-          value={selectedContinent ? selectedContinent : continent?._id}
+          value={selectedContinent ? selectedContinent : continent._id} //?
         >
           {continents.length > 0 &&
             continents.map((c) => (

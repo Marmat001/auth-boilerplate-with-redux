@@ -13,12 +13,12 @@ export const removeTours = async (slug, token) =>
     },
   })
 
-// export const updateContinent = async (slug, continent, token) =>
-//   await axios.put(`${process.env.REACT_APP_API}/continent/${slug}`, continent, {
-//     headers: {
-//       token,
-//     },
-//   })
+export const updateTour = async (slug, tour, token) =>
+  await axios.put(`${process.env.REACT_APP_API}/tour/${slug}`, tour, {
+    headers: {
+      token,
+    },
+  })
 
 export const addTour = async (tour, token) =>
   await axios.post(`${process.env.REACT_APP_API}/tour`, tour, {

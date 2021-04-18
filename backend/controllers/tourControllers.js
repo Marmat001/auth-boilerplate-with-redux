@@ -40,3 +40,22 @@ export const getTourInfo = async (req, res) => {
       .exec()
   )
 }
+
+export const update = async (req, res) => {
+  try {
+    if (req.body.title) {
+      req.body.slug = slugify(req.body.title)
+    }
+
+    res.json(
+      await Tour.findOneAndUpdate({ slug: req.params.slug }, req.body, {
+        new: true,
+      }).exec()
+    )
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({
+      error: error.message,
+    })
+  }
+}

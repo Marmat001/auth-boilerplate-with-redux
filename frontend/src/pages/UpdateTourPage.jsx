@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import AdminNavigation from '../components/AdminNavigation'
 import { useSelector } from 'react-redux'
-import { addTour, getTour } from '../helperFunctions/tourFunctions'
+import { addTour, getTour, updateTour } from '../helperFunctions/tourFunctions'
 import { toast } from 'react-toastify'
 import {
   getContinents,
@@ -16,7 +16,8 @@ const initialState = {
   title: '',
   description: '',
   price: '',
-  countries: [],
+  continent: '',
+  country: [],
   images: [],
   startDate: '',
   maxPeople: '',
@@ -62,12 +63,21 @@ const UpdateTourPage = ({ history, match }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addTour(tourInfo, user.token)
+    setLoading(true)
+
+    tourInfo.country = arrOfCountryIds
+    tourInfo.continent = selectedContinent
+      ? selectedContinent
+      : tourInfo.continent
+
+    updateTour(match.params.slug, tourInfo, user.token)
       .then((resp) => {
-        toast.success(`"${resp.data.title} has been updated!"`)
+        setLoading(false)
+        toast.success(`"${resp.data.title}" has been successfully updated!`)
         history.push('/admin/tours')
       })
       .catch((error) => {
+        setLoading(false)
         console.log(error)
         toast.error(error.response.data.error)
       })
