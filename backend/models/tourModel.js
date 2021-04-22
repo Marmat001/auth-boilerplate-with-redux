@@ -21,6 +21,10 @@ const tourSchema = new mongoose.Schema(
       type: String,
       enum: ['Easy', 'Medium', 'Hard', 'Extreme'],
     },
+    booked: {
+      type: Number,
+      default: 0,
+    },
     // ratingsAmount: {
     //   type: Number,
     //   default: 0,

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Logo from '../images/icon.svg'
+
 import { Menu } from 'antd'
 import {
   HomeOutlined,
@@ -37,9 +39,18 @@ const Navigation = () => {
   }
 
   return (
-    <Menu onClick={handleClick} selectedKeys={[current]} mode='horizontal'>
-      <Item key='home' icon={<HomeOutlined />}>
+    <Menu
+      onClick={handleClick}
+      selectedKeys={[current]}
+      mode='horizontal'
+      className='p-2 text-center'
+    >
+      <Item className='float-left' key='home' icon={<HomeOutlined />}>
         <Link to='/'>Home</Link>
+      </Item>
+
+      <Item key='logo' disabled className={`${!userInfo ? 'logo' : 'pl-5'}`}>
+        <img src={Logo} />
       </Item>
 
       {!userInfo && (

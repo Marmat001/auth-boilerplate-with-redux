@@ -27,5 +27,15 @@ export const addTour = async (tour, token) =>
     },
   })
 
+export const getTours = async (order, page, sort) =>
+  await axios.post(`${process.env.REACT_APP_API}/tours`, {
+    order,
+    page,
+    sort,
+  })
+  
 
+
+  export const toursAmount = async () => 
+    await axios.get(`${process.env.REACT_APP_API}/tours/count`)
   

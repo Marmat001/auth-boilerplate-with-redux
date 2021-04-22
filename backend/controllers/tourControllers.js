@@ -59,3 +59,28 @@ export const update = async (req, res) => {
     })
   }
 }
+
+export const show = async (req, res) => {
+  const { sort, page, order } = req.body
+
+  const pageInUse = page || 1
+  const amountPerPage = 3
+
+  try {
+    res.json(
+      await Tour.find({})
+        .skip((pageInUse - 1) * amountPerPage)
+        .populate('continent')
+        .populate('country')
+        .sort([[sort, order]])
+        .limit(amountPerPage)
+        .exec()
+    )
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const allTours = async (req, res) => {
+  res.json(await Tour.find({}).estimatedDocumentCount().exec())
+}

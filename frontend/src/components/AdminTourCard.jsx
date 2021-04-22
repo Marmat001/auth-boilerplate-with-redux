@@ -30,16 +30,18 @@ const TourCard = ({ tour, handleRemoval }) => {
       ]}
     >
       <Meta className='mb-5' title={title} description={overview} />
-      <Button
-        shape='round'
-        className='btn btn-raised btn'
-        block
-        type='primary'
-        icon={<FullscreenOutlined />}
-        size='large'
-      >
-        VIEW DETAILS
-      </Button>
+      <Link to={`/tour/${slug}`}>
+        <Button
+          shape='round'
+          className='btn btn-raised btn'
+          block
+          type='primary'
+          icon={<FullscreenOutlined />}
+          size='large'
+        >
+          VIEW DETAILS
+        </Button>
+      </Link>
     </Card>
   )
 }
