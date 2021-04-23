@@ -11,12 +11,14 @@ import {
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { Button, Card } from 'antd'
+import Mapbox from './Mapbox'
 const { Meta } = Card
 
 const TourInfo = ({ tour }) => {
   const {
     title,
     description,
+    address,
     images,
     slug,
     difficulty,
@@ -27,9 +29,11 @@ const TourInfo = ({ tour }) => {
     startDate,
     maxPeople,
     price,
+    areaLatitude,
+    areaLongitude,
+    startLatitude,
+    startLongitude,
   } = tour
-
-  console.log(tour)
 
   return (
     <>
@@ -119,6 +123,18 @@ const TourInfo = ({ tour }) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className='col-md-12 p-5'>
+        <Card>
+          <Mapbox
+            address={address}
+            startLatitude={startLatitude}
+            startLongitude={startLongitude}
+            areaLatitude={areaLatitude}
+            areaLongitude={areaLongitude}
+          />
+        </Card>
       </div>
     </>
   )

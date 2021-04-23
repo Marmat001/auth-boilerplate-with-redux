@@ -16,6 +16,7 @@ const UpdateTourForm = ({
   const {
     title,
     description,
+    address,
     price,
     continent,
     images,
@@ -25,6 +26,10 @@ const UpdateTourForm = ({
     overview,
     difficulty,
     difficulties,
+    startLongitude,
+    startLatitude,
+    areaLongitude,
+    areaLatitude,
   } = tourInfo
 
   return (
@@ -62,6 +67,18 @@ const UpdateTourForm = ({
           placeholder='Summary'
         />
         <label>Summary</label>
+      </div>
+
+      <div className='form-group'>
+        <input
+          onChange={handleChange}
+          value={address}
+          name='address'
+          type='text'
+          className='form-control input-background p-3'
+          placeholder='Address'
+        />
+        <label>Address</label>
       </div>
 
       <div className='form-group'>
@@ -126,6 +143,54 @@ const UpdateTourForm = ({
           }
         />
       )}
+
+      <div className='form-group'>
+        <input
+          onChange={handleChange}
+          value={areaLongitude}
+          type='number'
+          name='areaLongitude'
+          className='form-control input-background p-3'
+          placeholder='Area longitude'
+        />
+        <label>Area longitude</label>
+      </div>
+
+      <div className='form-group'>
+        <input
+          onChange={handleChange}
+          value={areaLatitude}
+          type='number'
+          name='areaLatitude'
+          className='form-control input-background p-3'
+          placeholder='Area latitude'
+        />
+        <label>Area latitude</label>
+      </div>
+
+      <div className='form-group'>
+        <input
+          onChange={handleChange}
+          value={startLongitude}
+          type='number'
+          name='startLongitude'
+          className='form-control input-background p-3'
+          placeholder='Start longitude'
+        />
+        <label>Start location longitude</label>
+      </div>
+
+      <div className='form-group'>
+        <input
+          onChange={handleChange}
+          value={startLatitude}
+          type='number'
+          name='startLatitude'
+          className='form-control input-background p-3'
+          placeholder='Start latitude'
+        />
+        <label>Start location latitude</label>
+      </div>
 
       <div className='form-group'>
         <select

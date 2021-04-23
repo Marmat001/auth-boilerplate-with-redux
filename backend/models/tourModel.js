@@ -25,17 +25,6 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    // ratingsAmount: {
-    //   type: Number,
-    //   default: 0,
-    // },
-    // ratingsAverage: {
-    //   type: Number,
-    //   default: 3.5,
-    //   min: [1],
-    //   max: [5],
-    //   set: (val) => Math.round(val * 10) / 10,
-    // },
     slug: {
       type: String,
       index: true,
@@ -74,19 +63,13 @@ const tourSchema = new mongoose.Schema(
     startDate: {
       type: Date,
     },
-    // locations: [
-    //   {
-    //     type: {
-    //       type: String,
-    //       default: 'Mark',
-    //       enum: ['Mark'],
-    //     },
-    //     coordinates: [Number],
-    //     address: String,
-    //     description: String,
-    //     day: Number,
-    //   },
-    // ],
+    address: {
+      type: String
+    },
+    areaLongitude: Number,
+    areaLatitude: Number,
+    startLongitude: Number,
+    startLatitude: Number,
   },
 
   { timestamps: true }

@@ -15,6 +15,7 @@ import UpdateTourForm from '../components/UpdateTourForm'
 const initialState = {
   title: '',
   description: '',
+  address: '',
   price: '',
   continent: '',
   country: [],
@@ -25,6 +26,10 @@ const initialState = {
   overview: '',
   difficulties: ['Easy', 'Medium', 'Hard', 'Extreme'],
   difficulty: [],
+  areaLongitude: '',
+  areaLatitude: '',
+  startLongitude: '',
+  startLatitude: '',
 }
 
 const UpdateTourPage = ({ history, match }) => {

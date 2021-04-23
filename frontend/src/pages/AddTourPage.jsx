@@ -15,6 +15,7 @@ import UploadImages from '../components/UploadImages'
 const initialState = {
   title: '',
   description: '',
+  address: '',
   price: '',
   continents: [],
   countries: [],
@@ -25,6 +26,10 @@ const initialState = {
   overview: '',
   difficulties: ['Easy', 'Medium', 'Hard', 'Extreme'],
   difficulty: [],
+  areaLongitude: '',
+  areaLatitude: '',
+  startLongitude: '',
+  startLatitude: '',
 }
 
 const AddTourPage = ({ history }) => {
@@ -34,6 +39,8 @@ const AddTourPage = ({ history }) => {
   const [loading, setLoading] = useState(false)
 
   const user = useSelector((state) => state.user)
+
+  console.log(tourInfo.startLocation)
 
   useEffect(() => {
     importContinents()
