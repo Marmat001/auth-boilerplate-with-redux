@@ -1,5 +1,6 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 import {
   FieldTimeOutlined,
@@ -8,11 +9,13 @@ import {
   RiseOutlined,
   UsergroupAddOutlined,
   DollarOutlined,
+  HeartOutlined,
 } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
-import { Button, Card } from 'antd'
+import { Card, Tabs } from 'antd'
 import Mapbox from './Mapbox'
-const { Meta } = Card
+import TourInfoSummary from './TourInfoSummary'
+
+const { TabPane } = Tabs
 
 const TourInfo = ({ tour }) => {
   const {
@@ -113,16 +116,39 @@ const TourInfo = ({ tour }) => {
               <h5 className='facts'>{maxPeople} PEOPLE</h5>
             </div>
 
-            <div className='d-flex align-items-center pb-3'>
+            <div className='d-flex align-items-center pb-5'>
               <DollarOutlined
                 style={{ color: '#2edea0' }}
                 className='h1 mr-3 mb-3'
               />
-              <h4 className='pr-3 facts'>PRICE</h4>
-              <h5 className='facts'>{price} USD</h5>
+              <h4 className='pr-3 facts'>30 DAY MONEY BACK GUARANTEE</h4>
             </div>
           </div>
         </div>
+
+        <Tabs type='card'>
+          <TabPane tab='Information' key='1'>
+            <Card
+              actions={[
+                <>
+                  <Link className='h6 text-info'>Book Now</Link>
+                </>,
+                <Link className='h6 text-info'>
+                  <HeartOutlined className='pr-2' />
+                  Add to wishlist
+                </Link>,
+              ]}
+            >
+              <TourInfoSummary tour={tour} />
+            </Card>
+          </TabPane>
+          <TabPane tab='Contact' key='2'>
+            <Card style={{ height: '397px' }}>
+              Call us at XXXX XXXX XXXX or email us at XXXX@gmail.com to learn
+              more about this tour
+            </Card>
+          </TabPane>
+        </Tabs>
       </div>
 
       <div className='col-md-12 p-5'>
