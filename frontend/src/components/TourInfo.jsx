@@ -43,7 +43,7 @@ const TourInfo = ({ tour }) => {
       <div className='container-fluid'>
         <div className='position-relative'>
           <div className='tour-background d-flex flex-column justify-content-center align-items-center'>
-            <h1 className='secondary-heading'>{title}</h1>
+            <h1 className='title-heading'>{title}</h1>
             <div className='d-flex w-25 justify-content-around'>
               <div className='d-flex align-items-center'>
                 <FieldTimeOutlined className='primary-heading h1 mr-3 mb-3' />
