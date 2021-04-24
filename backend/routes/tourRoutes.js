@@ -14,6 +14,7 @@ const {
   update,
   show,
   allTours,
+  showRelated
 } = require('../controllers/tourControllers')
 
 router.post('/tour', authenticationCheck, adminCheck, add)
@@ -23,5 +24,6 @@ router.delete('/tour/:slug', authenticationCheck, adminCheck, remove)
 router.get('/tour/:slug', getTourInfo)
 router.put('/tour/:slug', authenticationCheck, adminCheck, update)
 router.post('/tours', show)
+router.get("/tour/related/:tourId", showRelated)
 
 module.exports = router

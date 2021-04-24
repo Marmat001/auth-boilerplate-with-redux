@@ -5,7 +5,7 @@ import { Button, Card } from 'antd'
 const { Meta } = Card
 
 const TourCard = ({ tour }) => {
-  const { title, overview, images, slug } = tour
+  const { title, overview, images, slug, country } = tour
 
   return (
     <Card
@@ -16,11 +16,15 @@ const TourCard = ({ tour }) => {
         />
       }
     >
-      <Meta className='mb-5' title={title} description={overview} />
+      <Meta className='mb-3' title={title} description={overview} />
+      <div className='p-1 mb-3 text-center'>
+        <h4>{tour.country[0].name}</h4>
+      </div>
+
       <Link to={`/tour/${slug}`}>
         <Button
           shape='round'
-          className='btn btn-raised btn'
+          className='btn btn-raised'
           block
           type='primary'
           icon={<FullscreenOutlined />}

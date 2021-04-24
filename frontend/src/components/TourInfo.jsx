@@ -131,7 +131,8 @@ const TourInfo = ({ tour }) => {
             <Card
               actions={[
                 <>
-                  <Link className='h6 text-info'>Book Now</Link>
+                  <Link className='h6 text-info'>Book Now</Link>{' '}
+                  {/*kolla hur du gjorde i vacationeer för att d ska stå "log in too book om den inte e inloggad, samt att man kommer tbx på samma sida efter" */}
                 </>,
                 <Link className='h6 text-info'>
                   <HeartOutlined className='pr-2' />

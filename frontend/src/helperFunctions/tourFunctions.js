@@ -39,3 +39,9 @@ export const getTours = async (order, page, sort) =>
   export const toursAmount = async () => 
     await axios.get(`${process.env.REACT_APP_API}/tours/count`)
   
+
+
+
+
+  export const getRelatedTours = async (id) => 
+  await axios.get(`${process.env.REACT_APP_API}/tour/related/${id}`)

@@ -25,6 +25,7 @@ import AddTourPage from './pages/AddTourPage.jsx'
 import ToursPage from './pages/ToursPage.jsx'
 import UpdateTourPage from './pages/UpdateTourPage.jsx'
 import TourInfoPage from './pages/TourInfoPage.jsx'
+import ScrollTop from './components/ScrollTop.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -57,6 +58,7 @@ const App = () => {
   return (
     <>
       <ToastContainer />
+      <ScrollTop />
       <Navigation />
       <Switch>
         <Route component={HomePage} path='/' exact />

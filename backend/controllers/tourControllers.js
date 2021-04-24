@@ -84,3 +84,17 @@ export const show = async (req, res) => {
 export const allTours = async (req, res) => {
   res.json(await Tour.find({}).estimatedDocumentCount().exec())
 }
+
+export const showRelated = async (req, res) => {
+  const tour = await Tour.findById(req.params.tourId).exec()
+
+  const relatedTours = await Tour.find({
+    _id: { $ne: tour._id },
+    continent: tour.continent,
+  })
+    .limit(3)
+    .populate('continent')
+    .populate('country')
+    .exec()
+  res.json(relatedTours)
+}
