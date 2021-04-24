@@ -1,5 +1,6 @@
 import Continent from '../models/continentModel'
 import Country from '../models/countryModel'
+import Tour from '../models/tourModel'
 import slugify from 'slugify'
 
 export const add = async (req, res) => {
@@ -14,8 +15,16 @@ export const add = async (req, res) => {
 export const showAll = async (req, res) => {
   res.json(await Continent.find({}).sort({ createdAt: -1 }).exec())
 }
+
 export const show = async (req, res) => {
-  res.json(await Continent.findOne({ slug: req.params.slug }).exec())
+  const continent = await Continent.findOne({ slug: req.params.slug }).exec()
+
+  const tours = await Tour.find({ continent }).populate('continent').exec()
+
+  res.json({
+    continent,
+    tours,
+  })
 }
 
 export const update = async (req, res) => {
@@ -42,10 +51,9 @@ export const remove = async (req, res) => {
   }
 }
 
-
 export const getCountries = async (req, res) => {
-Country.find({parent: req.params._id}).exec((error, countries) => {
-  if(error) console.log(error)
-  res.json(countries)
-})
+  Country.find({ parent: req.params._id }).exec((error, countries) => {
+    if (error) console.log(error)
+    res.json(countries)
+  })
 }

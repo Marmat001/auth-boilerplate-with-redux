@@ -26,6 +26,8 @@ import ToursPage from './pages/ToursPage.jsx'
 import UpdateTourPage from './pages/UpdateTourPage.jsx'
 import TourInfoPage from './pages/TourInfoPage.jsx'
 import ScrollTop from './components/ScrollTop.jsx'
+import ContinentHomePage from './pages/ContinentHomePage.jsx'
+import CountryHomePage from './pages/CountryHomePage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -113,6 +115,8 @@ const App = () => {
         <AdminRoute component={UpdateTourPage} path='/admin/tour/:slug' exact />
 
         <Route component={TourInfoPage} path='/tour/:slug' exact />
+        <Route component={ContinentHomePage} path='/continent/:slug' exact />
+        <Route component={CountryHomePage} path='/country/:slug' exact />
       </Switch>
     </>
   )

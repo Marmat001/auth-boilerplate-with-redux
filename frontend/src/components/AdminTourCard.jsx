@@ -33,7 +33,7 @@ const TourCard = ({ tour, handleRemoval }) => {
       <Link to={`/tour/${slug}`}>
         <Button
           shape='round'
-          className='btn btn-raised btn'
+          className='btn btn-raised'
           block
           type='primary'
           icon={<FullscreenOutlined />}
