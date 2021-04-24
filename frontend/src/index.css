@@ -76,6 +76,13 @@
   font-size: 4.5rem;
 }
 
+.tours-heading {
+  background-image: linear-gradient(to right, #177ddc, #0219e6);
+  background-clip: text;
+  color: transparent;
+  font-size: 3.5rem;
+}
+
 .facts {
   background-image: linear-gradient(to right, #2edea0, #05c95d);
   background-clip: text;

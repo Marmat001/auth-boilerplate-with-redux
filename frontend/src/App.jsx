@@ -28,6 +28,7 @@ import TourInfoPage from './pages/TourInfoPage.jsx'
 import ScrollTop from './components/ScrollTop.jsx'
 import ContinentHomePage from './pages/ContinentHomePage.jsx'
 import CountryHomePage from './pages/CountryHomePage.jsx'
+import ShopPage from './pages/ShopPage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -117,6 +118,8 @@ const App = () => {
         <Route component={TourInfoPage} path='/tour/:slug' exact />
         <Route component={ContinentHomePage} path='/continent/:slug' exact />
         <Route component={CountryHomePage} path='/country/:slug' exact />
+
+        <Route component={ShopPage} path='/shop' exact />
       </Switch>
     </>
   )

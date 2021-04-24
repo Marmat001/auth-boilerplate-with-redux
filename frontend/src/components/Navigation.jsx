@@ -8,6 +8,7 @@ import {
   UserOutlined,
   UserAddOutlined,
   LogoutOutlined,
+  ShoppingOutlined,
 } from '@ant-design/icons'
 import firebase from 'firebase'
 import { Link } from 'react-router-dom'
@@ -48,6 +49,10 @@ const Navigation = () => {
     >
       <Item className='float-left' key='home' icon={<HomeOutlined />}>
         <Link to='/'>Home</Link>
+      </Item>
+
+      <Item className='float-left' key='shop' icon={<ShoppingOutlined />}>
+        <Link to='/shop'>Shop</Link>
       </Item>
 
       <Item key='logo' disabled className={`${!userInfo ? 'logo' : 'logo-sm'}`}>
