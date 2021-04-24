@@ -5,7 +5,7 @@ import { Button, Card } from 'antd'
 const { Meta } = Card
 
 const TourCard = ({ tour }) => {
-  const { title, overview, images, slug, country } = tour
+  const { title, overview, images, slug, country, price } = tour
 
   return (
     <Card
@@ -16,7 +16,11 @@ const TourCard = ({ tour }) => {
         />
       }
     >
-      <Meta className='mb-3' title={title} description={overview} />
+      <Meta
+        className='mb-3'
+        title={`${title} - $${price}`}
+        description={overview}
+      />
       <div className='p-1 mb-3 text-center'>
         <h4>{tour.country[0].name}</h4>
       </div>

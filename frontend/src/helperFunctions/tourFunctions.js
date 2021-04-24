@@ -45,3 +45,7 @@ export const getTours = async (order, page, sort) =>
 
   export const getRelatedTours = async (id) => 
   await axios.get(`${process.env.REACT_APP_API}/tour/related/${id}`)
+
+
+  export const fetchFilteredTours = async (arg) =>
+  await axios.post(`${process.env.REACT_APP_API}/search/filters`, arg)

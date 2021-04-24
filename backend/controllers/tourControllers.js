@@ -108,10 +108,28 @@ const handleSearch = async (req, res, query) => {
   res.json(tours)
 }
 
+const handlePrice = async (req, res, price) => {
+  const tours = await Tour.find({
+    price: {
+      $gte: price[0],
+      $lte: price[1],
+    },
+  })
+    .populate('continent', '_id name')
+    .populate('country', '_id name')
+    .exec()
+
+  res.json(tours)
+}
+
 export const filterSearch = async (req, res) => {
-  const { query } = req.body
+  const { query, price } = req.body
 
   if (query) {
     await handleSearch(req, res, query)
+  }
+
+  if (price !== undefined) {
+    await handlePrice(req, res, price)
   }
 }

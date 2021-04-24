@@ -56,7 +56,9 @@ const Navigation = () => {
       </Item>
 
       <Item key='logo' disabled className={`${!userInfo ? 'logo' : 'logo-sm'}`}>
-        <img src={Logo} />
+        <Link to='/'>
+          <img src={Logo} />
+        </Link>
       </Item>
 
       {!userInfo && (

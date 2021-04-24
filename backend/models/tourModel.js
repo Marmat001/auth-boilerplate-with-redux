@@ -7,8 +7,8 @@ const tourSchema = new mongoose.Schema(
       type: String,
       unique: true,
       trim: true,
-      text: true,
       required: true,
+      // text: true,
     },
     duration: {
       type: Number,
@@ -40,14 +40,14 @@ const tourSchema = new mongoose.Schema(
     description: {
       type: String,
       maxlength: 2000,
-      text: true,
+      // text: true,
       required: true,
     },
     overview: {
       type: String,
       trim: true,
-      text: true,
       required: true,
+      // text: true,
     },
     continent: {
       type: ObjectId,
