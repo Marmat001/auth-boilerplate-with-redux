@@ -13,6 +13,7 @@ import firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import SearchInput from './SearchInput'
 
 const { SubMenu, Item } = Menu
 
@@ -49,7 +50,7 @@ const Navigation = () => {
         <Link to='/'>Home</Link>
       </Item>
 
-      <Item key='logo' disabled className={`${!userInfo ? 'logo' : 'pl-5'}`}>
+      <Item key='logo' disabled className={`${!userInfo ? 'logo' : 'logo-sm'}`}>
         <img src={Logo} />
       </Item>
 
@@ -89,6 +90,10 @@ const Navigation = () => {
           </Item>
         </SubMenu>
       )}
+
+      <span className='float-right p-2'>
+        <SearchInput />
+      </span>
     </Menu>
   )
 }

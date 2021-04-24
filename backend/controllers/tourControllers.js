@@ -98,3 +98,20 @@ export const showRelated = async (req, res) => {
     .exec()
   res.json(relatedTours)
 }
+
+const handleSearch = async (req, res, query) => {
+  const tours = await Tour.find({ $text: { $search: query } })
+    .populate('continent', '_id name')
+    .populate('country', '_id name')
+    .exec()
+
+  res.json(tours)
+}
+
+export const filterSearch = async (req, res) => {
+  const { query } = req.body
+
+  if (query) {
+    await handleSearch(req, res, query)
+  }
+}
