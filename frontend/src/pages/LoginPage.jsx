@@ -29,11 +29,15 @@ const LogInPage = ({ history }) => {
     setUserInfo({ ...userInfo, [name]: e.target.value })
   }
 
+  const intended = history.location.state
+
   const redirectBasedOnRole = (resp) => {
-    if (resp.data.role === 'admin') {
-      history.push('/admin/dashboard')
+    if (intended) {
+      history.push(intended.from)
     } else {
-      history.push('/user/dashboard')
+      resp.data.role === 'admin'
+        ? history.push('/admin/dashboard')
+        : history.push('/user/dashboard')
     }
   }
 

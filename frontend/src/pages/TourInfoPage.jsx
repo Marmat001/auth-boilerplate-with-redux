@@ -3,8 +3,11 @@ import TourCard from '../components/TourCard'
 import TourInfo from '../components/TourInfo'
 import { getRelatedTours, getTour } from '../helperFunctions/tourFunctions'
 import { LoadingOutlined } from '@ant-design/icons'
+import { useSelector } from 'react-redux'
 
-const TourInfoPage = ({ match }) => {
+const TourInfoPage = ({ match, history }) => {
+  const userInfo = useSelector((state) => state.user)
+
   const [tour, setTour] = useState({})
   const [loading, setLoading] = useState(false)
   const [relatedTours, setRelatedTours] = useState([])
@@ -22,6 +25,15 @@ const TourInfoPage = ({ match }) => {
     })
   }
 
+  const handleClick = (e) => {
+    if (!userInfo || !userInfo.token) {
+      history.push({
+        pathname: '/login',
+        state: { from: `/tour/${match.params.slug}` },
+      })
+    }
+  }
+
   return (
     <div className='container-fluid'>
       {loading && (
@@ -32,7 +44,11 @@ const TourInfoPage = ({ match }) => {
       {!loading && (
         <>
           <div className='row pt-4'>
-            <TourInfo tour={tour} />
+            <TourInfo
+              handleClick={handleClick}
+              userInfo={userInfo}
+              tour={tour}
+            />
           </div>
           <div className='row'>
             <div className='col text-center pt-5 pb-5'>

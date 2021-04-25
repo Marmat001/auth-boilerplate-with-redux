@@ -16,6 +16,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: 'adventurer',
     },
+    stripe_account_id: '',
+		stripeSession: {}
 
     // wishlist: [{ type: ObjectId, ref: "Destination" }],
   },

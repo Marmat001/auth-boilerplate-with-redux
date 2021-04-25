@@ -106,7 +106,7 @@ const ShopPage = () => {
       <div key={c._id}>
         <Checkbox
           onChange={handlePick}
-          className='pl-4 pr-4 p-2'
+          className='pl-4 pr-4 p-3'
           value={c._id}
           checked={continentsIds.includes(c._id)}
           name='continent'
@@ -135,7 +135,7 @@ const ShopPage = () => {
       <div
         key={c._id}
         onClick={() => handleCountry(c)}
-        className='p-1 m-1 badge badge-secondary pointer'
+        className='p-2 m-1 badge badge-secondary pointer'
       >
         {c.name}
       </div>

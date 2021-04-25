@@ -1,6 +1,6 @@
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import moment from 'moment'
 import {
   FieldTimeOutlined,
@@ -17,7 +17,7 @@ import TourInfoSummary from './TourInfoSummary'
 
 const { TabPane } = Tabs
 
-const TourInfo = ({ tour }) => {
+const TourInfo = ({ tour, handleClick, userInfo }) => {
   const {
     title,
     description,
@@ -131,10 +131,13 @@ const TourInfo = ({ tour }) => {
             <Card
               actions={[
                 <>
-                  <Link className='h6 text-info'>Book Now</Link>
-                  {/*kolla hur du gjorde i vacationeer för att d ska stå "log in too book om den inte e inloggad, samt att man kommer tbx på samma sida efter" */}
+                  <div onClick={handleClick} className='h6 pt-2 text-info'>
+                    {userInfo && userInfo.token
+                      ? 'Book Now'
+                      : 'Login to book now'}
+                  </div>
                 </>,
-                <Link className='h6 text-info'>
+                <Link className='h6 pt-2 text-info'>
                   <HeartOutlined className='pr-2' />
                   Add to wishlist
                 </Link>,
