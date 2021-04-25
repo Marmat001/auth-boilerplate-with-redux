@@ -108,6 +108,15 @@ const handleSearch = async (req, res, query) => {
   res.json(tours)
 }
 
+const handleContinent = async (req, res, continent) => {
+  const tours = await Tour.find({ continent })
+    .populate('continent', '_id name')
+    .populate('country', '_id name')
+    .exec()
+
+  res.json(tours)
+}
+
 const handlePrice = async (req, res, price) => {
   const tours = await Tour.find({
     price: {
@@ -122,14 +131,31 @@ const handlePrice = async (req, res, price) => {
   res.json(tours)
 }
 
+const handleCountry = async (req, res, country) => {
+  const tours = await Tour.find({ country })
+    .populate('continent', '_id name')
+    .populate('country', '_id name')
+    .exec()
+
+  res.json(tours)
+}
+
 export const filterSearch = async (req, res) => {
-  const { query, price } = req.body
+  const { query, price, continent, country } = req.body
 
   if (query) {
     await handleSearch(req, res, query)
   }
 
+  if (continent) {
+    await handleContinent(req, res, continent)
+  }
+
   if (price !== undefined) {
     await handlePrice(req, res, price)
+  }
+
+  if (country) {
+    await handleCountry(req, res, country)
   }
 }
