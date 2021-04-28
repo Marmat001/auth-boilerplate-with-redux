@@ -33,19 +33,12 @@ export const getTours = async (order, page, sort) =>
     page,
     sort,
   })
-  
 
+export const toursAmount = async () =>
+  await axios.get(`${process.env.REACT_APP_API}/tours/count`)
 
-  export const toursAmount = async () => 
-    await axios.get(`${process.env.REACT_APP_API}/tours/count`)
-  
-
-
-
-
-  export const getRelatedTours = async (id) => 
+export const getRelatedTours = async (id) =>
   await axios.get(`${process.env.REACT_APP_API}/tour/related/${id}`)
 
-
-  export const fetchFilteredTours = async (arg) =>
+export const fetchFilteredTours = async (arg) =>
   await axios.post(`${process.env.REACT_APP_API}/search/filters`, arg)

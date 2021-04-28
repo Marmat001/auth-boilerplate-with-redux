@@ -34,10 +34,12 @@ export const applyCoupon = async (req, res) => {
   const { coupon } = req.body
 
   const validCoupon = await Coupon.findOne({ name: coupon }).exec()
+
   if (!validCoupon) {
-    console.log('shit')
     return res.json({
       error: 'Invalid coupon, try again',
     })
+  } else {
+    res.json(validCoupon)
   }
 }

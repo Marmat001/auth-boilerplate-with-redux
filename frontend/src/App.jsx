@@ -32,6 +32,7 @@ import ShopPage from './pages/ShopPage.jsx'
 import CheckOutPage from './pages/CheckOutPage.jsx'
 import OrdersPage from './pages/OrdersPage.jsx'
 import AddCouponPage from './pages/AddCouponPage.jsx'
+import PaymentPage from './pages/PaymentPage.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -128,6 +129,7 @@ const App = () => {
 
         <Route component={ShopPage} path='/shop' exact />
         <UserRoute component={CheckOutPage} path='/checkout/:slug' exact />
+        <UserRoute component={PaymentPage} path='/payment' exact />
       </Switch>
     </>
   )

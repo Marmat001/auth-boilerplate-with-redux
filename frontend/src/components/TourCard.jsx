@@ -12,6 +12,7 @@ const TourCard = ({ tour }) => {
       cover={
         <img
           src={images && images.length ? images[0].url : defaultImage}
+          alt={images}
           style={{ height: '250px', objectFit: 'cover' }}
         />
       }
