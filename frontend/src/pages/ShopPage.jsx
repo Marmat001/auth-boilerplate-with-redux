@@ -141,6 +141,17 @@ const ShopPage = () => {
       </div>
     ))
 
+  const handleResetFilters = () => {
+    dispatch({
+      type: 'FILTER_SEARCH',
+      payload: { text: '' },
+    })
+    setPrice([0, 0])
+    setContinentsIds([])
+    setCountry('')
+    importAllTours()
+  }
+
   return (
     <div className='container-fluid'>
       <div className='row'>
@@ -150,6 +161,9 @@ const ShopPage = () => {
               <h4 className='text-center pt-2 tertiary-heading'>
                 Filter Tours
               </h4>
+              <div className='text-center'>
+                <Button onClick={handleResetFilters}>Reset filters</Button>
+              </div>
               <SubMenu
                 key='1'
                 title={

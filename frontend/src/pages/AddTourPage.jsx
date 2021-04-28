@@ -40,8 +40,6 @@ const AddTourPage = ({ history }) => {
 
   const user = useSelector((state) => state.user)
 
-  console.log(tourInfo.startLocation)
-
   useEffect(() => {
     importContinents()
   }, [])

@@ -133,7 +133,7 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
                 <>
                   <div onClick={handleClick} className='h6 pt-2 text-info'>
                     {userInfo && userInfo.token
-                      ? 'Book Now'
+                      ? 'Proceed to booking'
                       : 'Login to book now'}
                   </div>
                 </>,

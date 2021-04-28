@@ -42,7 +42,6 @@ const ToursPage = () => {
     }
   }
 
-  console.log(tours)
   return (
     <div className='container-fluid'>
       <div className='row'>

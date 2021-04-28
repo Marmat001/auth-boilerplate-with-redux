@@ -59,7 +59,7 @@ const AddContinentPage = () => {
   const searchedValue = (query) => (c) => c.name.toLowerCase().includes(query)
 
   return (
-    <div className='container-fluid slide-left'>
+    <div className='container-fluid'>
       <div className='row'>
         <div className='col-md-2 text-center'>
           <AdminNavigation />

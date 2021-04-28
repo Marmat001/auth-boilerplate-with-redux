@@ -6,7 +6,7 @@ const UserNavigation = ({ showNav, setShowNav }) => {
   const active = window.location.pathname
 
   return (
-    <nav className={`${showNav && 'nav-border'}`}>
+    <nav>
       <div className='pt-3 text-center'>
         <Button
           onClick={() => setShowNav(!showNav)}
@@ -27,6 +27,17 @@ const UserNavigation = ({ showNav, setShowNav }) => {
             }`}
           >
             Dashboard
+          </Link>
+        </li>
+
+        <li className='nav-item'>
+          <Link
+            to='/user/orders'
+            className={`nav-link mt-4 mb-4 ${
+              active === '/user/orders' && 'active'
+            }`}
+          >
+            Orders
           </Link>
         </li>
 

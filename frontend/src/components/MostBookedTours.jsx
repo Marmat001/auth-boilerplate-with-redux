@@ -15,7 +15,9 @@ const MostBookedTours = () => {
   }, [page])
 
   useEffect(() => {
-    toursAmount().then((resp) => setToursCount(resp.data))
+    toursAmount().then((resp) =>
+      resp.data >= 6 ? setToursCount(6) : setToursCount(resp.data)
+    )
   }, [])
 
   const importTours = () => {

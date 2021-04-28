@@ -32,6 +32,8 @@ const TourInfoPage = ({ match, history }) => {
         state: { from: `/tour/${match.params.slug}` },
       })
     }
+
+    history.push(`/checkout/${match.params.slug}`)
   }
 
   return (
