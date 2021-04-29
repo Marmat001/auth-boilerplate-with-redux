@@ -1,5 +1,7 @@
 import User from '../models/userModel'
 import Coupon from '../models/couponModel'
+import Order from '../models/orderModel'
+import Tour from '../models/tourModel'
 
 export const createOrUpdate = async (req, res) => {
   const { email, picture, name } = req.user
@@ -42,4 +44,39 @@ export const applyCoupon = async (req, res) => {
   } else {
     res.json(validCoupon)
   }
+}
+
+export const createOrder = async (req, res) => {
+  try {
+    const { paymentIntent } = req.body.stripeResponse
+
+    const { slug } = req.body
+
+    console.log(slug)
+
+    const user = await User.findOne({ email: req.user.email }).exec()
+    const tour = await Tour.findOne({ slug }).exec()
+
+    let newOrder = await new Order({
+      tour,
+      paymentIntent,
+      orderedBy: user._id,
+    }).save()
+
+    res.json({ approved: true })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const fetchOrders = async (req, res) => {
+  const user = await User.findOne({ email: req.user.email }).exec()
+
+  const orders = await Order.find({ orderedBy: user._id })
+    .populate('tour')
+    .populate('continent', '_id name')
+    .populate('country', '_id name')
+    .exec()
+
+  res.json(orders)
 }

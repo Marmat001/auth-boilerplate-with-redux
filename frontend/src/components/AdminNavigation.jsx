@@ -20,17 +20,6 @@ const AdminNavigation = () => {
 
         <li className='nav-item'>
           <Link
-            to='/admin/orders'
-            className={`nav-link mt-4 mb-4 ${
-              active === '/admin/orders' && 'active'
-            }`}
-          >
-            Orders
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link
             to='/admin/tours'
             className={`nav-link mt-4 mb-4 ${
               active === '/admin/tours' && 'active'

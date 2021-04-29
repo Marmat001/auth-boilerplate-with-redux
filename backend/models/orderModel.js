@@ -8,7 +8,16 @@ const orderSchema = new mongoose.Schema(
 			type: ObjectId,
 			ref: 'Tour'
 		},
-		session: {},
+		
+		paymentIntent: {},
+		orderStatus: {
+			type: String,
+			default: "Payed",
+			enum: [
+				"Payed",
+				"Not Payed"
+			]
+		},
 		orderedBy: { type: ObjectId, ref: 'User' }
 	},
 	{ timestamps: true }
@@ -17,3 +26,7 @@ const orderSchema = new mongoose.Schema(
 const Order = mongoose.model('Order', orderSchema)
 
 export default Order
+
+
+
+

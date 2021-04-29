@@ -35,3 +35,21 @@ export const getAdminInfo = async (token) => {
     }
   )
 }
+
+export const createOrder = async (token, stripeResponse, slug) =>
+  await axios.post(
+    `${process.env.REACT_APP_API}/user/order`,
+    { stripeResponse, slug },
+    {
+      headers: {
+        token,
+      },
+    }
+  )
+
+export const getOrders = async (token) =>
+  await axios.get(`${process.env.REACT_APP_API}/user/orders`, {
+    headers: {
+      token,
+    },
+  })

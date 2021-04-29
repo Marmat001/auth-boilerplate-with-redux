@@ -70,6 +70,13 @@
   font-size: 2rem;
 }
 
+.paymentinfo-heading {
+  background-image: linear-gradient(to right, #161718, #1d1d1f);
+  background-clip: text;
+  color: transparent;
+  font-size: 1.3rem;
+}
+
 .title-heading {
   background-image: linear-gradient(to right, #177ddc, #0219e6);
   padding: 0 20px;

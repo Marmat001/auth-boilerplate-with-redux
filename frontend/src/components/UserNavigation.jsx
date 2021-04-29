@@ -32,17 +32,6 @@ const UserNavigation = ({ showNav, setShowNav }) => {
 
         <li className='nav-item'>
           <Link
-            to='/user/orders'
-            className={`nav-link mt-4 mb-4 ${
-              active === '/user/orders' && 'active'
-            }`}
-          >
-            Orders
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link
             to='/user/wishlist'
             className={`nav-link mt-4 mb-4 ${
               active === '/user/wishlist' && 'active'

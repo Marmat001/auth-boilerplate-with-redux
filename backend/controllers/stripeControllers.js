@@ -8,8 +8,7 @@ const stripe = Stripe(process.env.STRIPE_SECRET)
 export const finalizeStripePayment = async (req, res) => {
   const { price } = req.body
 
-  console.log(price)
-
+ 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: parseInt(price * 100),
     currency: 'usd',

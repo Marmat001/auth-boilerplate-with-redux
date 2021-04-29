@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { DollarOutlined } from '@ant-design/icons'
 import { getTour } from '../helperFunctions/tourFunctions'
 import defaultImage from '../images/view.png'
+import { createOrder } from '../helperFunctions/authFunction'
 
 const StripeCheckout = ({ match, Card }) => {
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ const StripeCheckout = ({ match, Card }) => {
   const { images } = tour
 
   const paymentInfo = useSelector((state) => state.payment)
+  const userInfo = useSelector((state) => state.user)
 
   useEffect(() => {
     importTourInfo()
@@ -39,9 +41,11 @@ const StripeCheckout = ({ match, Card }) => {
   }
 
   useEffect(() => {
-    createStripeIntent(user.token, paymentInfo.price).then((resp) => {
-      setClientSecret(resp.data.clientSecret)
-    })
+    createStripeIntent(user.token, paymentInfo.price, match.params.slug).then(
+      (resp) => {
+        setClientSecret(resp.data.clientSecret)
+      }
+    )
   }, [])
 
   const handleSubmit = async (e) => {
@@ -61,15 +65,7 @@ const StripeCheckout = ({ match, Card }) => {
       setError(`Payment failed ${payload.error.message}`)
       setProcessing(false)
     } else {
-      // createOrder(payload, user.token).then((res) => {
-      //   if (res.data.ok) {
-      //     dispatch({
-      //       type: 'PAYMENT_HANDLER',
-      //       payload: false,
-      //     })
-      //   }
-      // })
-
+      createOrder(user.token, payload, match.params.slug)
       setProcessing(false)
       setError(null)
       setFullfilled(true)
@@ -147,7 +143,11 @@ const StripeCheckout = ({ match, Card }) => {
       </form>
       <h4 className={fullfilled ? 'result-message' : 'result-message hidden'}>
         Payment Successful.{' '}
-        <Link to='/user/dashboard'>See it in your dashboard.</Link>
+        {userInfo && userInfo.role === 'admin' ? (
+          <Link to='/admin/dashboard'>See it in your dashboard.</Link>
+        ) : (
+          <Link to='/user/dashboard'>See it in your dashboard.</Link>
+        )}
       </h4>
     </>
   )

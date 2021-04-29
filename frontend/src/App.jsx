@@ -30,7 +30,6 @@ import ContinentHomePage from './pages/ContinentHomePage.jsx'
 import CountryHomePage from './pages/CountryHomePage.jsx'
 import ShopPage from './pages/ShopPage.jsx'
 import CheckOutPage from './pages/CheckOutPage.jsx'
-import OrdersPage from './pages/OrdersPage.jsx'
 import AddCouponPage from './pages/AddCouponPage.jsx'
 import PaymentPage from './pages/PaymentPage.jsx'
 
@@ -76,7 +75,6 @@ const App = () => {
           exact
         />
         <UserRoute component={WishlistPage} path='/user/wishlist' exact />
-        <UserRoute component={OrdersPage} path='/user/orders' exact />
         <AdminRoute
           component={AdminDashboardPage}
           path='/admin/dashboard'
@@ -88,7 +86,6 @@ const App = () => {
           path='/admin/update-profile'
           exact
         />
-        <AdminRoute component={OrdersPage} path='/admin/orders' exact />
         <AdminRoute component={AddCouponPage} path='/admin/coupon' exact />
 
         <Route component={LoginPage} path='/login' exact />
