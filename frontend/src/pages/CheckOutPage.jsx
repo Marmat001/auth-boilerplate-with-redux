@@ -16,7 +16,7 @@ const CheckOutPage = ({ match, history }) => {
 
   const dispatch = useDispatch()
 
-  const { images, title, price, address, country, startDate } = tour
+  const { images, title, price, address, country, startDate, slug } = tour
 
   const userInfo = useSelector((state) => state.user)
 
@@ -40,22 +40,36 @@ const CheckOutPage = ({ match, history }) => {
           price - ((price * resp.data.discount) / 100).toFixed(2)
         )
         dispatch({
-          type: 'APPLIED_COUPON',
-          payload: true,
+          type: 'PAYMENT_HANDLER',
+          payload: { price: totalAmountAfterDiscount },
         })
       }
       if (resp.data.error) {
         setCouponError(resp.data.error)
 
         dispatch({
-          type: 'APPLIED_COUPON',
-          payload: false,
+          type: 'PAYMENT_HANDLER',
+          payload: { price },
         })
       }
     })
   }
 
-  console.log(coupon)
+  const handleBooking = (e) => {
+    e.preventDefault()
+    history.push(`/payment/${slug}`)
+    dispatch({
+      type: 'PAYMENT_HANDLER',
+      payload: {
+        price: totalAmountAfterDiscount > 0 ? totalAmountAfterDiscount : price,
+      },
+    })
+
+    window.localStorage.setItem(
+      'paymentStatus',
+      totalAmountAfterDiscount > 0 ? totalAmountAfterDiscount : price
+    )
+  }
 
   return (
     <div className='container-fluid'>
@@ -124,7 +138,7 @@ const CheckOutPage = ({ match, history }) => {
               shape='round'
               className='btn btn-raised btn-outline-info btn mt-5 mb-5'
               block
-              onClick={() => history.push('/payment')}
+              onClick={handleBooking}
             >
               Book Now
             </Button>

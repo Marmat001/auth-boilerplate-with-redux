@@ -5,11 +5,13 @@ const router = express.Router()
 const { authenticationCheck } = require('../middlewares/authMiddleware')
 
 const {
-  stripeSessionId,
-  stripeSuccess,
+  finalizeStripePayment
 } = require('../controllers/stripeControllers')
 
-router.post('/stripe-session-id', authenticationCheck, stripeSessionId)
-router.post('/stripe-success', authenticationCheck, stripeSuccess)
+router.post("/finalize-stripe-payment", authenticationCheck, finalizeStripePayment);
+
 
 module.exports = router
+
+
+

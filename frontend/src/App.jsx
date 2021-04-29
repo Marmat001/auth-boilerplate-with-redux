@@ -129,7 +129,7 @@ const App = () => {
 
         <Route component={ShopPage} path='/shop' exact />
         <UserRoute component={CheckOutPage} path='/checkout/:slug' exact />
-        <UserRoute component={PaymentPage} path='/payment' exact />
+        <UserRoute component={PaymentPage} path='/payment/:slug' exact />
       </Switch>
     </>
   )
