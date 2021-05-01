@@ -52,13 +52,13 @@ export const createOrder = async (req, res) => {
 
     const { slug } = req.body
 
-    console.log(slug)
-
     const user = await User.findOne({ email: req.user.email }).exec()
-    const tour = await Tour.findOne({ slug }).exec()
+    const tour = await Tour.findOne({ slug }).populate('country', 'name').exec()
+    const country = tour.country[0].name
 
     let newOrder = await new Order({
       tour,
+      country,
       paymentIntent,
       orderedBy: user._id,
     }).save()
@@ -74,9 +74,38 @@ export const fetchOrders = async (req, res) => {
 
   const orders = await Order.find({ orderedBy: user._id })
     .populate('tour')
-    .populate('continent', '_id name')
-    .populate('country', '_id name')
     .exec()
 
   res.json(orders)
+}
+
+export const addTourToWishlist = async (req, res) => {
+  const { tourId } = req.body
+
+  const user = await User.findOneAndUpdate(
+    { email: req.user.email },
+    { $addToSet: { wishlist: tourId } }
+  ).exec()
+
+  res.json({ approved: true })
+}
+
+export const getWishlistInfo = async (req, res) => {
+  const wishlist = await User.findOne({ email: req.user.email })
+    .select('wishlist')
+    .populate('wishlist')
+    .exec()
+
+  res.json(wishlist)
+}
+
+export const removeFromWishlist = async (req, res) => {
+  const { tourId } = req.params
+
+  const user = await User.findOneAndUpdate(
+    { email: req.user.email },
+    { $pull: { wishlist: tourId } }
+  ).exec()
+
+  res.json({ approved: true })
 }

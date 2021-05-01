@@ -53,3 +53,32 @@ export const getOrders = async (token) =>
       token,
     },
   })
+
+export const getWishlist = async (token) =>
+  await axios.get(`${process.env.REACT_APP_API}/user/wishlist`, {
+    headers: {
+      token,
+    },
+  })
+
+export const removeTourFromWishlist = async (tourId, token) =>
+  await axios.put(
+    `${process.env.REACT_APP_API}/user/wishlist/${tourId}`,
+    {},
+    {
+      headers: {
+        token,
+      },
+    }
+  )
+
+export const addTourToWishlist = async (tourId, token) =>
+  await axios.post(
+    `${process.env.REACT_APP_API}/user/wishlist`,
+    { tourId },
+    {
+      headers: {
+        token,
+      },
+    }
+  )

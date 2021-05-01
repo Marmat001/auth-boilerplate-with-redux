@@ -3,6 +3,8 @@ import UserNavigation from '../components/UserNavigation'
 import { useSelector } from 'react-redux'
 import { getOrders } from '../helperFunctions/authFunction'
 import DisplayPaymentInfo from '../components/DisplayPaymentInfo'
+import { PDFDownloadLink } from '@react-pdf/renderer'
+import InvoicePDF from '../components/InvoicePDF'
 
 const UserDashboardPage = () => {
   const [showNav, setShowNav] = useState(true)
@@ -37,21 +39,21 @@ const UserDashboardPage = () => {
                 <thead className='thead-light'>
                   <tr>
                     <th scope='col'>Tour</th>
-                    <th scope='col'>Status</th>
+                    <th scope='col'>Destination</th>
                     <th scope='col'>Price</th>
                     <th scope='col'>Duration</th>
                     <th scope='col'>Difficulty</th>
                     <th scope='col'>Start Date</th>
                   </tr>
                 </thead>
-                {console.log(order)}
+
                 <tbody>
                   <tr>
                     <td>
                       <b className='text-info'>{order.tour.title}</b>
                     </td>
 
-                    <td className='text-info'>{order.orderStatus}</td>
+                    <td className='text-info'>{order.country}</td>
                     <td className='text-info'>
                       {(order.paymentIntent.amount /= 100).toLocaleString(
                         'en-US',
@@ -75,7 +77,15 @@ const UserDashboardPage = () => {
               </table>
               <div className='row'>
                 <div className='col'>
-                  <p className='paymentinfo-heading pt-3'>Download PDF</p>
+                  <p className='paymentinfo-heading pt-3'>
+                    <PDFDownloadLink
+                      document={<InvoicePDF order={order} />}
+                      className='btn btn-block btn-outline-primary btn-sm'
+                      fileName='Invoice.pdf'
+                    >
+                      Download PDF
+                    </PDFDownloadLink>
+                  </p>
                 </div>
               </div>
             </div>

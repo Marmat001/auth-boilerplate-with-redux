@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import {
   FieldTimeOutlined,
@@ -14,6 +15,8 @@ import {
 import { Card, Tabs } from 'antd'
 import Mapbox from './Mapbox'
 import TourInfoSummary from './TourInfoSummary'
+import { addTourToWishlist, getWishlist } from '../helperFunctions/authFunction'
+import { toast } from 'react-toastify'
 
 const { TabPane } = Tabs
 
@@ -37,6 +40,35 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
     startLatitude,
     startLongitude,
   } = tour
+
+  const [wishlist, setWishlist] = useState([])
+
+  useEffect(() => {
+    importWishlist()
+  }, [userInfo])
+
+  const importWishlist = () => {
+    if (userInfo) {
+      getWishlist(userInfo.token).then((resp) => {
+        setWishlist(resp.data.wishlist)
+      })
+    }
+  }
+
+  const history = useHistory()
+
+  const handleAddToWishlist = (e) => {
+    e.preventDefault()
+
+    addTourToWishlist(tour._id, userInfo.token).then((resp) => {
+      console.log(resp.data)
+      toast.success('Successfully added to wishlist!')
+      history.push('/user/wishlist')
+    })
+  }
+
+  const wishlistedTours = wishlist.map((t) => t.title)
+  const currentTourInWishlist = wishlistedTours.includes(title)
 
   return (
     <>
@@ -137,10 +169,12 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
                       : 'Login to book now'}
                   </div>
                 </>,
-                <Link className='h6 pt-2 text-info'>
+                <a onClick={handleAddToWishlist} className='h6 pt-2 text-info'>
                   <HeartOutlined className='pr-2' />
-                  Add to wishlist
-                </Link>,
+                  {currentTourInWishlist
+                    ? 'Already wishlisted'
+                    : 'Add to wishlist'}
+                </a>,
               ]}
             >
               <TourInfoSummary tour={tour} />

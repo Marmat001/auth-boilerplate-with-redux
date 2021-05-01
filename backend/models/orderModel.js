@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema(
 			type: ObjectId,
 			ref: 'Tour'
 		},
-		
+		country: String,
 		paymentIntent: {},
 		orderStatus: {
 			type: String,

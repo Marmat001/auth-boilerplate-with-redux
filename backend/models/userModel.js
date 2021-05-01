@@ -17,9 +17,9 @@ const userSchema = new mongoose.Schema(
       default: 'adventurer',
     },
     stripe_account_id: '',
-		stripeSession: {}
+		stripeSession: {},
 
-    // wishlist: [{ type: ObjectId, ref: "Destination" }],
+    wishlist: [{ type: ObjectId, ref: "Tour" }],
   },
   { timestamps: true }
 )

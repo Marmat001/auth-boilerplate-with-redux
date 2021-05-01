@@ -1,10 +1,9 @@
 import React from 'react'
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer'
 
 const DisplayPaymentInfo = ({ order }) => (
   <div>
     <p className='paymentinfo-heading'>
-      <span>Order Id: {order.paymentIntent.id}</span> <br />
+      <span>Order ID: {order.paymentIntent.id}</span> <br />
       <span>Currency: {order.paymentIntent.currency.toUpperCase()}</span> <br />
       <span>Method: {order.paymentIntent.payment_method_types[0]}</span> <br />
       <span>Payment: {order.paymentIntent.status.toUpperCase()}</span>
