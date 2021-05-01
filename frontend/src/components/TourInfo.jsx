@@ -169,7 +169,12 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
                       : 'Login to book now'}
                   </div>
                 </>,
-                <a onClick={handleAddToWishlist} className='h6 pt-2 text-info'>
+                <a
+                  onClick={handleAddToWishlist}
+                  className={`h6 pt-2 ${
+                    currentTourInWishlist ? 'text-primary' : 'text-info'
+                  }`}
+                >
                   <HeartOutlined className='pr-2' />
                   {currentTourInWishlist
                     ? 'Already wishlisted'

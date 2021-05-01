@@ -4,6 +4,7 @@ import CountryList from '../components/CountryList'
 import LatestAddedTours from '../components/LatestAddedTours'
 import MostBookedTours from '../components/MostBookedTours'
 import { Footer } from 'antd/lib/layout/layout'
+import Logo from '../images/icon.svg'
 
 const HomePage = () => {
   return (
@@ -34,7 +35,21 @@ const HomePage = () => {
 
       <CountryList />
 
-      <Footer>hello YEYEYEYEYYEYEYEYEYEYEYEYYEYE</Footer>
+      <Footer className='pl-0 pr-0'>
+        <hr className='btn-outline-secondary mb-5' />
+
+        <div className='d-flex align-items-center'>
+          <hr className='btn-outline-secondary w-25' />
+
+          <div className='text-center'>
+            <img src={Logo} />
+            <h3 className='mt-3 mb-5'>
+              <span>&#169; Tourify</span>
+            </h3>
+          </div>
+          <hr className='btn-outline-secondary w-25' />
+        </div>
+      </Footer>
     </>
   )
 }
