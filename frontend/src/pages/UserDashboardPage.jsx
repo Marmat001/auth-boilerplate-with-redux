@@ -29,7 +29,7 @@ const UserDashboardPage = () => {
         </div>
         <div className='col text-center pt-5'>
           <h4>
-            {orders.length > 0 ? 'Purchased Orders' : 'No orders to display'}
+            {orders.length > 0 ? 'All Bookings' : 'No bookings to display'}
           </h4>
 
           {orders.map((order, i) => (

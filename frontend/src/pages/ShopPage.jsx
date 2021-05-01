@@ -15,7 +15,7 @@ import { Button, Menu, Slider, Checkbox } from 'antd'
 import { getContinents } from '../helperFunctions/continentFunctions'
 import { getCountries } from '../helperFunctions/countryFunctions'
 
-const { SubMenu, Item } = Menu
+const { SubMenu } = Menu
 
 const ShopPage = () => {
   const dispatch = useDispatch()
@@ -56,6 +56,10 @@ const ShopPage = () => {
   useEffect(() => {
     const debounce = setTimeout(() => {
       fetchTours({ query: text })
+
+      if (!text) {
+        importAllTours()
+      }
     }, 300)
 
     return () => clearTimeout(debounce)

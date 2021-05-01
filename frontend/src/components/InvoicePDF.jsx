@@ -73,7 +73,10 @@ const InvoicePDF = ({ order }) => {
             {order.paymentIntent.amount} $
           </Text>
         </Text>
-        <Text style={styles.footer}> Thank you for shopping with us </Text>
+        <Text style={styles.footer}>
+          {' '}
+          Thank you for traveling the world with us{' '}
+        </Text>
       </Page>
     </Document>
   )

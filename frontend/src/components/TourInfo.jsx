@@ -113,7 +113,9 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
       </div>
 
       <div className='col-md-6 pt-5'>
-        <h1 className='tertiary-heading text-center'>ABOUT THE {title}</h1>
+        <h1 className='tertiary-heading text-center'>
+          ABOUT {title?.toUpperCase()}
+        </h1>
         <p className='pb-5'>{description}</p>
 
         <div className='d-flex justify-content-center'>

@@ -25,18 +25,19 @@ const ContinentHomePage = ({ match }) => {
             <LoadingOutlined className='loading-spinner' />
           ) : (
             <h4 className='text-center p-3 mt-5 mb-5 display-4 jumbotron'>
-              {tours.length} Tours in "{continent.name}"
+              {tours.length} {tours.length === 1 ? 'Tour in' : 'Tours in'} "
+              {continent.name}"
             </h4>
           )}
         </div>
       </div>
 
-      <div className="row">
-            {tours.map((t) => (
-              <div className="col pb-5" key={t._id}>
-                <TourCard tour={t} />
-              </div>
-            ))}
+      <div className='row'>
+        {tours.map((t) => (
+          <div className='col pb-5' key={t._id}>
+            <TourCard tour={t} />
+          </div>
+        ))}
       </div>
     </div>
   )

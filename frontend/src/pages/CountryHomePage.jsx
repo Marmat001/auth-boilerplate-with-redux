@@ -25,7 +25,8 @@ const ContinentHomePage = ({ match }) => {
             <LoadingOutlined className='loading-spinner' />
           ) : (
             <h4 className='text-center p-3 mt-5 mb-5 display-4 jumbotron'>
-              {tours.length} Tours in "{country.name}"
+              {tours.length} {tours.length === 1 ? 'Tour in' : 'Tours in'} "
+              {country.name}"
             </h4>
           )}
         </div>

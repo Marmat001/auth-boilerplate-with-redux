@@ -7,6 +7,7 @@ import { DollarOutlined } from '@ant-design/icons'
 import { getTour } from '../helperFunctions/tourFunctions'
 import defaultImage from '../images/view.png'
 import { createOrder } from '../helperFunctions/authFunction'
+import { toast } from 'react-toastify'
 
 const StripeCheckout = ({ match, Card }) => {
   const dispatch = useDispatch()
@@ -69,6 +70,7 @@ const StripeCheckout = ({ match, Card }) => {
       setProcessing(false)
       setError(null)
       setFullfilled(true)
+      toast.success('Payment successful!')
     }
   }
 

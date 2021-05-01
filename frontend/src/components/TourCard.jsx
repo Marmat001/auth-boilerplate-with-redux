@@ -17,13 +17,10 @@ const TourCard = ({ tour }) => {
         />
       }
     >
-      <Meta
-        className='mb-3'
-        title={`${title} - $${price}`}
-        description={overview}
-      />
-      <div className='p-1 mb-3 text-center'>
-        <h4>{tour.country[0].name}</h4>
+      <Meta className='mb-3' title={`${title}`} description={overview} />
+      <div className='p-1 mb-3 d-flex justify-content-around'>
+        <h4 className='facts'>{tour.country[0].name}</h4>
+        <h4 className='facts'>{tour.price} $</h4>
       </div>
 
       <Link to={`/tour/${slug}`}>
