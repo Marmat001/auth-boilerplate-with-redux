@@ -70,7 +70,6 @@ const UploadImages = ({ tourInfo, setTourInfo, setLoading }) => {
         setTourInfo({ ...tourInfo, images: filteredImages })
       })
       .catch((err) => {
-        console.log(err)
         setLoading(false)
       })
   }

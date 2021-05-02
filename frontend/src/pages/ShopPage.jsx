@@ -7,7 +7,7 @@ import {
 import {
   LoadingOutlined,
   DollarOutlined,
-  GlobalOutlined,
+  CompassOutlined,
   EnvironmentOutlined,
 } from '@ant-design/icons'
 import TourCard from '../components/TourCard'
@@ -60,7 +60,7 @@ const ShopPage = () => {
       if (!text) {
         importAllTours()
       }
-    }, 300)
+    }, 1000)
 
     return () => clearTimeout(debounce)
   }, [text])
@@ -79,7 +79,7 @@ const ShopPage = () => {
     setCountry('')
     setTimeout(() => {
       setApproved(!approved)
-    }, 300)
+    }, 1000)
   }
 
   const handlePick = (e) => {
@@ -192,7 +192,7 @@ const ShopPage = () => {
                 key='2'
                 title={
                   <span className='h6'>
-                    <GlobalOutlined /> Continents
+                    <CompassOutlined /> Continents
                   </span>
                 }
               >

@@ -63,8 +63,8 @@ const UpdateProfilePage = () => {
           <div className='text-center mb-5'>
             <h1 className='primary-heading'>Update Profile</h1>
           </div>
-          <div className='d-flex'>
-            <Card className='col-md-9'>
+          <div className='d-flex justify-content-center'>
+            <Card className='col-md-6'>
               <h3>Update Password</h3>
               <form onSubmit={handleSubmit}>
                 <div className='form-group'>
@@ -89,9 +89,6 @@ const UpdateProfilePage = () => {
                   <label>Confirm new password</label>
                 </div>
               </form>
-            </Card>
-            <Card className='col-md-3 ml-3 text-center'>
-              <h3>Profile Picture</h3>
             </Card>
           </div>
 

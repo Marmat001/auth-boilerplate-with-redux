@@ -6,7 +6,7 @@ const LoaderCard = ({ amount }) => {
 
     for (let i = 0; i < amount; i++) {
       cardAmount.push(
-        <Card key={i} className='col-md-4' style={{ height: '452px' }}>
+        <Card key={i} className='col-md-4' style={{ height: '474px' }}>
           <Skeleton active />
         </Card>
       )

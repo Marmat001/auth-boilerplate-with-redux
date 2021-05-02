@@ -28,7 +28,7 @@ const AdminDashboardPage = () => {
         </div>
 
         <div className='col text-center pt-5'>
-          <h4>
+          <h4 className='primary-heading'>
             {orders.length > 0 ? 'All Bookings' : 'No bookings to display'}
           </h4>
 
@@ -46,7 +46,6 @@ const AdminDashboardPage = () => {
                     <th scope='col'>Start Date</th>
                   </tr>
                 </thead>
-                {console.log(order)}
                 <tbody>
                   <tr>
                     <td>

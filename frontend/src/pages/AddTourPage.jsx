@@ -59,7 +59,6 @@ const AddTourPage = ({ history }) => {
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error)
         toast.error(error.response.data.error)
         setLoading(false)
       })

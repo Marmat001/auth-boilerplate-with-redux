@@ -61,7 +61,6 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
     e.preventDefault()
 
     addTourToWishlist(tour._id, userInfo.token).then((resp) => {
-      console.log(resp.data)
       toast.success('Successfully added to wishlist!')
       history.push('/user/wishlist')
     })
@@ -76,23 +75,25 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
         <div className='position-relative'>
           <div className='tour-background d-flex flex-column justify-content-center align-items-center'>
             <h1 className='title-heading'>{title}</h1>
-            <div className='d-flex w-25 justify-content-around'>
-              <div className='d-flex align-items-center'>
-                <FieldTimeOutlined className='primary-heading h1 mr-3 mb-3' />
+            <div className='d-flex w-25 justify-content-around text-center'>
+              <div>
+                <FieldTimeOutlined className='primary-heading mr-2 mb-3' />
                 <h5>
                   {duration} {duration < 2 ? 'DAY' : 'DAYS'}
                 </h5>
               </div>
 
-              <div className='d-flex align-items-center'>
-                <EnvironmentOutlined className='primary-heading h1 mr-3 mb-3' />
+              <div className='ml-5'>
+                <EnvironmentOutlined className='primary-heading mr-2 mb-3' />
                 <h5>
                   {continent && continent.name.toUpperCase()},{' '}
                   {country && country[0].name.toUpperCase()}
                 </h5>
               </div>
             </div>
-            <h4 className='pt-5'>{overview}</h4>
+            <div className='pt-5 pl-3 pr-3 w-50 text-center'>
+              <h4>{overview}</h4>
+            </div>
           </div>
           {images && (
             <img
@@ -120,7 +121,7 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
 
         <div className='d-flex justify-content-center'>
           <div>
-            <h1 className='tertiary-heading pt-5 pb-3'>QUICK INFORMATION</h1>
+            <h1 className='tertiary-heading text-center pt-5 pb-3'>QUICK INFORMATION</h1>
             <div className='d-flex align-items-center pb-3'>
               <CalendarOutlined
                 style={{ color: '#2edea0' }}

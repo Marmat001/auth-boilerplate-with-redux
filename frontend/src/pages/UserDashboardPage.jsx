@@ -28,7 +28,7 @@ const UserDashboardPage = () => {
           <UserNavigation showNav={showNav} setShowNav={setShowNav} />
         </div>
         <div className='col text-center pt-5'>
-          <h4>
+          <h4 className='primary-heading'>
             {orders.length > 0 ? 'All Bookings' : 'No bookings to display'}
           </h4>
 
