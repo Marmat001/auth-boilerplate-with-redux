@@ -34,7 +34,7 @@ const RegisterPage = ({ history }) => {
   }
 
   return (
-    <div className='col-md-6 offset-md-3 p-5'>
+    <div className='col-md-6 offset-md-3 pt-5'>
       <Card>
         <h1 className='pt-5 text-center'>Register</h1>
 
@@ -65,15 +65,18 @@ const RegisterPage = ({ history }) => {
             {buttonText}
           </Button>
 
-          <div className='d-flex justify-content-center align-items-center mt-3'>
+          <div className='d-flex forgot-register justify-content-center align-items-center mt-3'>
             <Link
               to='/authentication/forgot-password'
-              className='btn btn-sm btn-outline-danger'
+              className='btn btn-sm btn-outline-danger mr-3 mb-3'
             >
               Forgot Password?
             </Link>
 
-            <Link to='/login' className='btn btn-sm btn-outline-primary ml-4'>
+            <Link
+              to='/login'
+              className='btn btn-sm btn-outline-primary mr-3 mb-3'
+            >
               Have an account? Log In
             </Link>
           </div>

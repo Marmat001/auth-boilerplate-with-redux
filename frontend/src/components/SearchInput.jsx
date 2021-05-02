@@ -20,7 +20,7 @@ const SearchInput = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    history.push(`/shop?${text}`)
+    history.push(`/tours?${text}`)
   }
 
   return (

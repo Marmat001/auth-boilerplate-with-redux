@@ -140,14 +140,6 @@
   object-fit: cover;
 }
 
-.logo {
-  padding-left: 225px !important;
-}
-
-.logo-sm {
-  padding-left: 168px !important;
-}
-
 .tour-background {
   background-image: linear-gradient(
     to right bottom,
@@ -180,4 +172,16 @@
 
 .pointer {
   cursor: pointer;
+}
+
+@media (max-width: 1050px) {
+  .register-login {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 850px) {
+  .forgot-register {
+    flex-direction: column;
+  }
 }

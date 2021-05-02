@@ -52,13 +52,7 @@ const Navigation = () => {
       </Item>
 
       <Item className='float-left' key='shop' icon={<GlobalOutlined />}>
-        <Link to='/shop'>Tours</Link>
-      </Item>
-
-      <Item key='logo' disabled className={`${!userInfo ? 'logo' : 'logo-sm'}`}>
-        <Link to='/'>
-          <img src={Logo} />
-        </Link>
+        <Link to='/tours'>Tours</Link>
       </Item>
 
       {!userInfo && (

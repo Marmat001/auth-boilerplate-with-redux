@@ -7,7 +7,7 @@ import { authentication } from '../firebase'
 
 const initialState = {
   email: '',
-  buttonText: 'Request password reset link',
+  buttonText: 'Request reset link',
 }
 
 const ForgotPasswordPage = ({ history }) => {
@@ -41,13 +41,13 @@ const ForgotPasswordPage = ({ history }) => {
         )
       })
       .catch((error) => {
-        setUserInfo({ ...userInfo, buttonText: 'Request password reset link' })
+        setUserInfo({ ...userInfo, buttonText: 'Request reset link' })
         toast.error(error.message)
       })
   }
 
   return (
-    <div className='col-md-6 offset-md-3 p-5'>
+    <div className='col-md-6 offset-md-3 pt-5'>
       <Card>
         <h1 className='pt-5 text-center'>Forgot Password</h1>
         <form onSubmit={handleSubmit} className='p-4'>
@@ -77,12 +77,18 @@ const ForgotPasswordPage = ({ history }) => {
             {buttonText}
           </Button>
 
-          <div className='d-flex justify-content-center align-items-center mt-3'>
-            <Link to='/register' className='btn btn-sm btn-outline-danger'>
+          <div className='d-flex register-login justify-content-center align-items-center mt-3'>
+            <Link
+              to='/register'
+              className='btn btn-sm btn-outline-danger mr-3 mb-3'
+            >
               New customer? Register
             </Link>
 
-            <Link to='/login' className='btn btn-sm btn-outline-primary ml-4'>
+            <Link
+              to='/login'
+              className='btn btn-sm btn-outline-primary mr-3 mb-3'
+            >
               Have an account? Log In
             </Link>
           </div>

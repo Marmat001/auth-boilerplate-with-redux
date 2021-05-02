@@ -108,7 +108,7 @@ const LogInPage = ({ history }) => {
   }
 
   return (
-    <div className='col-md-6 offset-md-3 p-5'>
+    <div className='col-md-6 offset-md-3 pt-5'>
       <Card>
         <h1 className='pt-5 text-center'>Log In</h1>
         <form onSubmit={handleSubmit} className='form-background p-4'>
@@ -160,18 +160,21 @@ const LogInPage = ({ history }) => {
               size='large'
               disabled={buttonText === 'Submitting'}
             >
-              {buttonText === 'Submitting' ? buttonText : 'Log In With Google'}
+              {buttonText === 'Submitting' ? buttonText : 'Google Log In'}
             </Button>
 
-            <div className='d-flex justify-content-center align-items-center'>
+            <div className='d-flex forgot-register justify-content-center align-items-center'>
               <Link
                 to='/authentication/forgot-password'
-                className='btn btn-sm btn-outline-danger mr-3'
+                className='btn btn-sm btn-outline-danger mr-3 mb-3'
               >
                 Forgot Password?
               </Link>
 
-              <Link to='/register' className='btn btn-sm btn-outline-primary'>
+              <Link
+                to='/register'
+                className='btn btn-sm btn-outline-primary mr-3 mb-3'
+              >
                 New customer? Register
               </Link>
             </div>

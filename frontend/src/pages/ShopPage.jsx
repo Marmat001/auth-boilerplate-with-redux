@@ -60,7 +60,7 @@ const ShopPage = () => {
       if (!text) {
         importAllTours()
       }
-    }, 1000)
+    }, 300)
 
     return () => clearTimeout(debounce)
   }, [text])
@@ -79,7 +79,7 @@ const ShopPage = () => {
     setCountry('')
     setTimeout(() => {
       setApproved(!approved)
-    }, 1000)
+    }, 300)
   }
 
   const handlePick = (e) => {
@@ -183,7 +183,7 @@ const ShopPage = () => {
                     range
                     value={price}
                     onChange={handlePrice}
-                    max='2999'
+                    max='8999'
                   />
                 </div>
               </SubMenu>

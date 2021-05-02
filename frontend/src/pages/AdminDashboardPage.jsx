@@ -27,7 +27,7 @@ const AdminDashboardPage = () => {
           <AdminNavigation />
         </div>
 
-        <div className='col text-center pt-5'>
+        <div className='col text-center pt-3'>
           <h4 className='primary-heading'>
             {orders.length > 0 ? 'All Bookings' : 'No bookings to display'}
           </h4>

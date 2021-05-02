@@ -189,7 +189,7 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
             </Card>
           </TabPane>
           <TabPane tab='Contact' key='2'>
-            <Card style={{ height: '397px' }}>
+            <Card style={{ height: '405px' }}>
               Call us at XXXX XXXX XXXX or email us at XXXX@gmail.com to learn
               more about this tour
             </Card>

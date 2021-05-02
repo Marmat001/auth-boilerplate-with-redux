@@ -53,7 +53,7 @@ const ToursPage = () => {
             {loading ? (
               <LoadingOutlined className='loading-spinner' />
             ) : (
-              <h1 className='primary-heading'>All Tours</h1>
+              <h1 className='primary-heading mb-5'>All Tours</h1>
             )}
           </div>
           <div className='row'>

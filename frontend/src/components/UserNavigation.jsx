@@ -6,7 +6,7 @@ const UserNavigation = ({ showNav, setShowNav }) => {
   const active = window.location.pathname
 
   return (
-    <nav>
+    <nav className={`${showNav && 'nav-border'}`}>
       <div className='pt-3 text-center'>
         <Button
           onClick={() => setShowNav(!showNav)}

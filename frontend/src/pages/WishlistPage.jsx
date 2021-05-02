@@ -37,7 +37,7 @@ const WishlistPage = () => {
           <UserNavigation showNav={showNav} setShowNav={setShowNav} />
         </div>
         <div className='col'>
-          <h4 className='pt-3 text-center pb-5'>Wishlist</h4>
+          <h4 className='pt-3 text-center pb-5 primary-heading'>Wishlist</h4>
 
           {wishlist.map((t) => (
             <Card key={t._id}>

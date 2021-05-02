@@ -124,7 +124,7 @@ const App = () => {
         <Route component={ContinentHomePage} path='/continent/:slug' exact />
         <Route component={CountryHomePage} path='/country/:slug' exact />
 
-        <Route component={ShopPage} path='/shop' exact />
+        <Route component={ShopPage} path='/tours' exact />
         <UserRoute component={CheckOutPage} path='/checkout/:slug' exact />
         <UserRoute component={PaymentPage} path='/payment/:slug' exact />
       </Switch>
