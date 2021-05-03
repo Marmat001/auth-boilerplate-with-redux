@@ -72,23 +72,23 @@ const CheckOutPage = ({ match, history }) => {
   }
 
   return (
-    <div className='container-fluid'>
+    <div className='col-md-6 offset-md-3 pt-5'>
       {loading ? (
-        <div className='text-center pt-5'>
+        <div className='text-center'>
           <LoadingOutlined className='loading-spinner text-center' />
         </div>
       ) : (
         <div className='row'>
-          <div className='col-md-6 offset-3 pt-5'>
+          <div className='col'>
             {images && (
               <img
                 src={images[0].url}
                 alt={title}
-                className='mb-3 w-100 h-50'
-                style={{ borderRadius: '10px' }}
+                className='mb-3 w-100 h-25'
+                style={{ borderRadius: '10px', objectFit: 'cover' }}
               />
             )}
-            <h4 className='text-center'>{title}</h4>
+            <h4 className='text-center tertiary-heading'>{title}</h4>
             <br />
             <br />
             <h4 className='text-primary'>

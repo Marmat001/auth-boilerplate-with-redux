@@ -52,18 +52,31 @@ const UpdateProfilePage = () => {
   return (
     <div className='container-fluid'>
       <div className='row'>
-        <div className={`${showNav && 'col-md-2 text-center'}`}>
-          {user.role === 'admin' ? (
-            <AdminNavigation />
-          ) : (
-            <UserNavigation showNav={showNav} setShowNav={setShowNav} />
-          )}
-        </div>
-        <Card className='col h-100'>
+        {showNav && (
+          <>
+            {user.role === 'admin' ? (
+              <div className={`${showNav && 'col-md-2 text-center'}`}>
+                <AdminNavigation />
+              </div>
+            ) : (
+              <div className={`${showNav && 'col-md-3 text-center'}`}>
+                <UserNavigation showNav={showNav} setShowNav={setShowNav} />
+              </div>
+            )}
+          </>
+        )}
+
+        <div className={`${showNav ? 'col-md-9' : 'col-md-12'}`}>
+          <Button
+            className='btn btn-outline-info mt-3'
+            onClick={() => setShowNav(!showNav)}
+          >
+            Menu
+          </Button>
           <div className='text-center mb-5'>
             <h1 className='primary-heading'>Update Profile</h1>
           </div>
-          <div className='d-flex justify-content-center'>
+          <div className='d-flex row justify-content-center'>
             <Card className='col-md-6'>
               <h3>Update Password</h3>
               <form onSubmit={handleSubmit}>
@@ -89,24 +102,23 @@ const UpdateProfilePage = () => {
                   <label>Confirm new password</label>
                 </div>
               </form>
+              <div className='text-center'>
+                <Button
+                  onClick={handleSubmit}
+                  shape='round'
+                  size='large'
+                  block
+                  className='btn btn-primary btn-raised btn w-50 mt-5'
+                  disabled={
+                    buttonText === 'Submitting' || !password || !confirmPassword
+                  }
+                >
+                  {buttonText}
+                </Button>
+              </div>
             </Card>
           </div>
-
-          <div className='text-center'>
-            <Button
-              onClick={handleSubmit}
-              shape='round'
-              size='large'
-              block
-              className='btn btn-primary btn-raised btn w-50 mt-5'
-              disabled={
-                buttonText === 'Submitting' || !password || !confirmPassword
-              }
-            >
-              {buttonText}
-            </Button>
-          </div>
-        </Card>
+        </div>
       </div>
     </div>
   )

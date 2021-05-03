@@ -5,6 +5,7 @@ import { getOrders } from '../helperFunctions/authFunction'
 import DisplayPaymentInfo from '../components/DisplayPaymentInfo'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import InvoicePDF from '../components/InvoicePDF'
+import { Card, Button } from 'antd'
 
 const UserDashboardPage = () => {
   const [showNav, setShowNav] = useState(true)
@@ -24,16 +25,24 @@ const UserDashboardPage = () => {
   return (
     <div className='container-fluid'>
       <div className='row'>
-        <div className={`${showNav && 'col-md-2 text-center'}`}>
-          <UserNavigation showNav={showNav} setShowNav={setShowNav} />
-        </div>
-        <div className='col text-center pt-3'>
-          <h4 className='primary-heading'>
+        {showNav && (
+          <div className={`${showNav && 'col-md-3 text-center'}`}>
+            <UserNavigation showNav={showNav} setShowNav={setShowNav} />
+          </div>
+        )}
+        <div className='col'>
+          <Button
+            className='btn btn-outline-info mt-3'
+            onClick={() => setShowNav(!showNav)}
+          >
+            Menu
+          </Button>
+          <h4 className='primary-heading text-center'>
             {orders.length > 0 ? 'All Bookings' : 'No bookings to display'}
           </h4>
 
           {orders.map((order, i) => (
-            <div key={i} className='m-5 p-3 card'>
+            <div key={i} className='m-5 p-3 text-center card'>
               <DisplayPaymentInfo order={order} />
               <table className='table table-bordered'>
                 <thead className='thead-light'>

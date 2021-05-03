@@ -7,17 +7,6 @@ const UserNavigation = ({ showNav, setShowNav }) => {
 
   return (
     <nav className={`${showNav && 'nav-border'}`}>
-      <div className='pt-3 text-center'>
-        <Button
-          onClick={() => setShowNav(!showNav)}
-          style={{ width: '110px' }}
-          className='btn btn-raised btn'
-          type='primary'
-          size='large'
-          shape='round'
-          icon={<MenuOutlined />}
-        ></Button>
-      </div>
       <ul className={`nav flex-column mt-2 ${!showNav && 'nav-anim'}`}>
         <li className='nav-item'>
           <Link

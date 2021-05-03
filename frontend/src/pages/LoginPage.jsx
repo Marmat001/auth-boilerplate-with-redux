@@ -37,7 +37,7 @@ const LogInPage = ({ history }) => {
     } else {
       resp.data.role === 'admin'
         ? history.push('/admin/dashboard')
-        : history.push('/user/dashboard')
+        : history.push('/')
     }
   }
 

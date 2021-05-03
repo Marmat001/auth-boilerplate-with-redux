@@ -7,7 +7,7 @@ import {
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { DeleteOutlined } from '@ant-design/icons'
-import { Card } from 'antd'
+import { Card, Button } from 'antd'
 
 const WishlistPage = () => {
   const [showNav, setShowNav] = useState(true)
@@ -33,10 +33,18 @@ const WishlistPage = () => {
   return (
     <div className='container-fluid'>
       <div className='row'>
-        <div className={`${showNav && 'col-md-2 text-center'}`}>
-          <UserNavigation showNav={showNav} setShowNav={setShowNav} />
-        </div>
-        <div className='col'>
+        {showNav && (
+          <div className={`${showNav && 'col-md-3 text-center'}`}>
+            <UserNavigation showNav={showNav} setShowNav={setShowNav} />
+          </div>
+        )}
+        <div className={`${showNav ? 'col-md-9' : 'col-md-12'}`}>
+          <Button
+            className='btn btn-outline-info mt-3'
+            onClick={() => setShowNav(!showNav)}
+          >
+            Menu
+          </Button>
           <h4 className='pt-3 text-center pb-5 primary-heading'>Wishlist</h4>
 
           {wishlist.map((t) => (
