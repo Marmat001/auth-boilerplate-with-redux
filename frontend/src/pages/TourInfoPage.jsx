@@ -4,6 +4,8 @@ import TourInfo from '../components/TourInfo'
 import { getRelatedTours, getTour } from '../helperFunctions/tourFunctions'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { addTourToWishlist, getWishlist } from '../helperFunctions/authFunction'
 
 const TourInfoPage = ({ match, history }) => {
   const userInfo = useSelector((state) => state.user)
@@ -31,9 +33,23 @@ const TourInfoPage = ({ match, history }) => {
         pathname: '/login',
         state: { from: `/tour/${match.params.slug}` },
       })
+    } else {
+      history.push(`/checkout/${match.params.slug}`)
     }
+  }
 
-    history.push(`/checkout/${match.params.slug}`)
+  const handleAddToWishlist = (e) => {
+    if (!userInfo || !userInfo.token) {
+      history.push({
+        pathname: '/login',
+        state: { from: `/tour/${match.params.slug}` },
+      })
+    } else {
+      addTourToWishlist(tour._id, userInfo.token).then((resp) => {
+        toast.success('Successfully added to wishlist!')
+        history.push('/user/wishlist')
+      })
+    }
   }
 
   return (
@@ -48,6 +64,7 @@ const TourInfoPage = ({ match, history }) => {
           <div className='row pt-4'>
             <TourInfo
               handleClick={handleClick}
+              handleAddToWishlist={handleAddToWishlist}
               userInfo={userInfo}
               tour={tour}
             />

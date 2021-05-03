@@ -91,6 +91,10 @@ const CheckOutPage = ({ match, history }) => {
             <h4 className='text-center'>{title}</h4>
             <br />
             <br />
+            <h4 className='text-primary'>
+              Try out coupon "20212021" for 20% off!
+            </h4>
+            <br />
             <h4>Discount Coupon</h4>
             <br />
             <input

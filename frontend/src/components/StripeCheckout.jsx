@@ -119,6 +119,11 @@ const StripeCheckout = ({ match, Card }) => {
             </div>,
           ]}
         />
+
+        <h5 className='mt-4 text-primary'>
+          For testing purpose, try using this credit card number "4242 4242 4242
+          4242" with MM and YY being any future date
+        </h5>
       </div>
       <form id='payment-form' className='stripe-form' onSubmit={handleSubmit}>
         <CardElement

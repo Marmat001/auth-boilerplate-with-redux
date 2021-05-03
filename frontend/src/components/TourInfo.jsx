@@ -15,12 +15,11 @@ import {
 import { Card, Tabs } from 'antd'
 import Mapbox from './Mapbox'
 import TourInfoSummary from './TourInfoSummary'
-import { addTourToWishlist, getWishlist } from '../helperFunctions/authFunction'
-import { toast } from 'react-toastify'
+import { getWishlist } from '../helperFunctions/authFunction'
 
 const { TabPane } = Tabs
 
-const TourInfo = ({ tour, handleClick, userInfo }) => {
+const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
   const {
     title,
     description,
@@ -56,15 +55,6 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
   }
 
   const history = useHistory()
-
-  const handleAddToWishlist = (e) => {
-    e.preventDefault()
-
-    addTourToWishlist(tour._id, userInfo.token).then((resp) => {
-      toast.success('Successfully added to wishlist!')
-      history.push('/user/wishlist')
-    })
-  }
 
   const wishlistedTours = wishlist.map((t) => t.title)
   const currentTourInWishlist = wishlistedTours.includes(title)
@@ -121,7 +111,9 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
 
         <div className='d-flex justify-content-center'>
           <div>
-            <h1 className='tertiary-heading text-center pt-5 pb-3'>QUICK INFORMATION</h1>
+            <h1 className='tertiary-heading text-center pt-5 pb-3'>
+              QUICK INFORMATION
+            </h1>
             <div className='d-flex align-items-center pb-3'>
               <CalendarOutlined
                 style={{ color: '#2edea0' }}
@@ -181,7 +173,9 @@ const TourInfo = ({ tour, handleClick, userInfo }) => {
                   <HeartOutlined className='pr-2' />
                   {currentTourInWishlist
                     ? 'Already wishlisted'
-                    : 'Add to wishlist'}
+                    : userInfo && userInfo.token
+                    ? 'Add to wishlist'
+                    : 'Login to wishlist'}
                 </a>,
               ]}
             >
