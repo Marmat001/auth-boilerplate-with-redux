@@ -22,7 +22,7 @@ const InvoicePDF = ({ order }) => {
           data={[
             {
               tour: order.tour.title,
-              price: order.tour.price,
+              price: order.paymentIntent.amount * 0.01,
               duration: order.tour.duration,
               country: order.country,
               startDate: order.tour.startDate,
@@ -69,7 +69,7 @@ const InvoicePDF = ({ order }) => {
           {'\n'}
           <Text>
             Total Paid: {'       '}
-            {order.paymentIntent.amount} $
+            {order.paymentIntent.amount * 0.01} $
           </Text>
         </Text>
         <Text style={styles.footer}>

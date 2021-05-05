@@ -76,7 +76,7 @@ const UserDashboardPage = () => {
 
                       <td className='text-info'>{order.country}</td>
                       <td className='text-info'>
-                        {(order.paymentIntent.amount /= 100).toLocaleString(
+                        {(order.paymentIntent.amount * 0.01).toLocaleString(
                           'en-US',
                           {
                             style: 'currency',
