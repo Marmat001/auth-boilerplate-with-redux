@@ -19,8 +19,8 @@ const TourCard = ({ tour }) => {
     >
       <Meta className='mb-3' title={`${title}`} description={overview} />
       <div className='p-1 mb-3 d-flex justify-content-around'>
-        <h4 className='facts'>{tour.country[0].name}</h4>
-        <h4 className='facts'>{tour.price} $</h4>
+        <h4 className='facts'>{country[0].name}</h4>
+        <h4 className='facts'>{price} $</h4>
       </div>
 
       <Link to={`/tour/${slug}`}>

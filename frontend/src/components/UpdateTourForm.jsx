@@ -19,7 +19,6 @@ const UpdateTourForm = ({
     address,
     price,
     continent,
-    images,
     startDate,
     maxPeople,
     duration,

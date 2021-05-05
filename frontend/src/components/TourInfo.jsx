@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { Carousel } from 'react-responsive-carousel'
-import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import {
   FieldTimeOutlined,
@@ -25,7 +24,6 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
     description,
     address,
     images,
-    slug,
     difficulty,
     duration,
     country,
@@ -33,7 +31,6 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
     overview,
     startDate,
     maxPeople,
-    price,
     areaLatitude,
     areaLongitude,
     startLatitude,
@@ -44,6 +41,11 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
 
   useEffect(() => {
     importWishlist()
+
+    return () => {
+      setWishlist([])
+    }
+    // eslint-disable-next-line
   }, [userInfo])
 
   const importWishlist = () => {
@@ -54,8 +56,6 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
     }
   }
 
-  const history = useHistory()
-
   const wishlistedTours = wishlist.map((t) => t.title)
   const currentTourInWishlist = wishlistedTours.includes(title)
 
@@ -64,27 +64,30 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
       <div className='container-fluid'>
         <div className='position-relative'>
           <div className='tour-background d-flex flex-column justify-content-center align-items-center'>
-            <h1 className='title-heading'>{title}</h1>
-            <div className='d-flex w-25 justify-content-around text-center'>
-              <div>
-                <FieldTimeOutlined className='primary-heading mr-2 mb-3' />
-                <h5>
-                  {duration} {duration < 2 ? 'DAY' : 'DAYS'}
-                </h5>
-              </div>
+            <Card>
+              <h1 className='tours-heading text-center'>{title}</h1>
+              <div className='d-flex justify-content-center align-items-center text-center'>
+                <div className='mr-5'>
+                  <FieldTimeOutlined className='primary-heading mb-3' />
+                  <h4>
+                    {duration} {duration < 2 ? 'DAY' : 'DAYS'}
+                  </h4>
+                </div>
 
-              <div className='ml-5'>
-                <EnvironmentOutlined className='primary-heading mr-2 mb-3' />
-                <h5>
-                  {continent && continent.name.toUpperCase()},{' '}
-                  {country && country[0].name.toUpperCase()}
-                </h5>
+                <div className='ml-5'>
+                  <EnvironmentOutlined className='primary-heading mb-3' />
+                  <h4>
+                    {continent && continent.name.toUpperCase()},{' '}
+                    {country && country[0].name.toUpperCase()}
+                  </h4>
+                </div>
               </div>
-            </div>
-            <div className='pt-5 pl-3 pr-3 w-50 text-center'>
-              <h4>{overview}</h4>
-            </div>
+              <div className='pt-4'>
+                <h4>{overview}</h4>
+              </div>
+            </Card>
           </div>
+
           {images && (
             <img
               src={images[0].url}
@@ -98,7 +101,9 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
         <Card>
           <Carousel showArrows={true} infiniteLoop autoPlay>
             {images &&
-              images.map((img) => <img src={img.url} key={img.public_id} />)}
+              images.map((img) => (
+                <img alt='tour-covers' src={img.url} key={img.public_id} />
+              ))}
           </Carousel>
         </Card>
       </div>
@@ -109,7 +114,7 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
         </h1>
         <p className='pb-5'>{description}</p>
 
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex facts-container justify-content-center'>
           <div>
             <h1 className='tertiary-heading text-center pt-5 pb-3'>
               QUICK INFORMATION
@@ -164,7 +169,7 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
                       : 'Login to book now'}
                   </div>
                 </>,
-                <a
+                <p
                   onClick={handleAddToWishlist}
                   className={`h6 pt-2 ${
                     currentTourInWishlist ? 'text-primary' : 'text-info'
@@ -176,7 +181,7 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
                     : userInfo && userInfo.token
                     ? 'Add to wishlist'
                     : 'Login to wishlist'}
-                </a>,
+                </p>,
               ]}
             >
               <TourInfoSummary tour={tour} />
@@ -192,7 +197,7 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
       </div>
 
       <div className='col-md-12 p-5'>
-        <Card>
+        {/* <Card> */}
           <Mapbox
             address={address}
             startLatitude={startLatitude}
@@ -200,7 +205,7 @@ const TourInfo = ({ tour, handleClick, userInfo, handleAddToWishlist }) => {
             areaLatitude={areaLatitude}
             areaLongitude={areaLongitude}
           />
-        </Card>
+        {/* </Card> */}
       </div>
     </>
   )

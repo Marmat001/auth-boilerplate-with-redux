@@ -2,17 +2,9 @@ import { useState, useEffect } from 'react'
 import AdminNavigation from '../components/AdminNavigation'
 import { useSelector } from 'react-redux'
 import { Button } from 'antd'
-import {
-  removeCountry,
-  addCountry,
-  getCountry,
-  updateCountry,
-} from '../helperFunctions/countryFunctions'
+import { getCountry, updateCountry } from '../helperFunctions/countryFunctions'
 import { getContinents } from '../helperFunctions/continentFunctions'
 import { toast } from 'react-toastify'
-import { Link } from 'react-router-dom'
-import SearchQuery from '../components/SearchQuery'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 
 const UpdateCountryPage = ({ history, match }) => {
   const user = useSelector((state) => state.user)
@@ -25,6 +17,7 @@ const UpdateCountryPage = ({ history, match }) => {
   useEffect(() => {
     importContinents()
     importCountry()
+    // eslint-disable-next-line
   }, [])
 
   const importContinents = () =>

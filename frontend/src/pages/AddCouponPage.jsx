@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 import AdminNavigation from '../components/AdminNavigation'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   addCoupon,
   getCoupons,
   removeCoupon,
 } from '../helperFunctions/couponFunctions'
 import { toast } from 'react-toastify'
-import { Link } from 'react-router-dom'
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Button, DatePicker } from 'antd'
 import moment from 'moment'
 
@@ -85,7 +84,7 @@ const AddCouponPage = () => {
 
             <div className='form-group'>
               <input
-                type='text'
+                type='number'
                 className='form-control input-background p-3 mb-3'
                 onChange={(e) => setDiscount(e.target.value)}
                 value={discount}

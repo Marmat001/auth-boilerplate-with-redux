@@ -22,6 +22,7 @@ const CheckOutPage = ({ match, history }) => {
 
   useEffect(() => {
     importTourInfo()
+    // eslint-disable-next-line
   }, [match.params.slug])
 
   const importTourInfo = () => {
@@ -37,7 +38,7 @@ const CheckOutPage = ({ match, history }) => {
       if (resp.data.discount) {
         setCouponInfo(resp.data)
         setTotalAmountAfterDiscount(
-          price - ((price * resp.data.discount) / 100).toFixed(2)
+          price - ((price * resp.data.discount) / 100).toFixed(0)
         )
         dispatch({
           type: 'PAYMENT_HANDLER',

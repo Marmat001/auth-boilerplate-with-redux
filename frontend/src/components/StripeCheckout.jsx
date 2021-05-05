@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { createStripeIntent } from '../helperFunctions/stripeFunctions'
 import { Link } from 'react-router-dom'
 import { DollarOutlined } from '@ant-design/icons'
@@ -8,9 +8,9 @@ import { getTour } from '../helperFunctions/tourFunctions'
 import defaultImage from '../images/view.png'
 import { createOrder } from '../helperFunctions/authFunction'
 import { toast } from 'react-toastify'
+import { LoadingOutlined } from '@ant-design/icons'
 
 const StripeCheckout = ({ match, Card }) => {
-  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
 
   const [fullfilled, setFullfilled] = useState(false)
@@ -31,6 +31,7 @@ const StripeCheckout = ({ match, Card }) => {
 
   useEffect(() => {
     importTourInfo()
+    // eslint-disable-next-line
   }, [match.params.slug])
 
   const importTourInfo = () => {
@@ -47,7 +48,7 @@ const StripeCheckout = ({ match, Card }) => {
         setClientSecret(resp.data.clientSecret)
       }
     )
-  }, [])
+  }, [user.token, paymentInfo.price, match.params.slug])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -99,63 +100,82 @@ const StripeCheckout = ({ match, Card }) => {
 
   return (
     <>
-      <div className='text-center pb-5'>
-        <Card
-          cover={
-            <img
-              src={images && images.length ? images[2].url : defaultImage}
-              style={{
-                height: '200px',
-                objectFit: 'cover',
-                borderRadius: '20px',
-                marginBottom: '-50px',
-              }}
+      {loading ? (
+        <div className='col text-center'>
+          <LoadingOutlined className='loading-spinner' />
+        </div>
+      ) : (
+        <>
+          <div className='text-center pb-5'>
+            <Card
+              cover={
+                <img
+                  src={images && images.length ? images[3].url : defaultImage}
+                  alt='tour-cover'
+                  style={{
+                    height: '200px',
+                    objectFit: 'cover',
+                    borderRadius: '20px',
+                    marginBottom: '-50px',
+                  }}
+                />
+              }
+              actions={[
+                <div className='tertiary-heading'>
+                  <DollarOutlined className='text-info' /> <br /> Total: ${' '}
+                  {paymentInfo.price}
+                </div>,
+              ]}
             />
-          }
-          actions={[
-            <div className='tertiary-heading'>
-              <DollarOutlined className='text-info' /> <br /> Total: ${' '}
-              {paymentInfo.price}
-            </div>,
-          ]}
-        />
 
-        <h5 className='mt-4 text-primary'>
-          For testing purpose, try using this credit card number "4242 4242 4242
-          4242" with MM and YY being any future date
-        </h5>
-      </div>
-      <form id='payment-form' className='stripe-form' onSubmit={handleSubmit}>
-        <CardElement
-          id='card-element'
-          options={cardStyle}
-          onChange={handleChange}
-        />
-
-        <button
-          className='stripe-button'
-          disabled={processing || disabled || fullfilled}
-        >
-          <span id='button-text'>
-            {processing ? <div className='spinner' id='spinner'></div> : 'Pay'}
-          </span>
-        </button>
-        <br />
-
-        {error && (
-          <div className='card-error' role='alert'>
-            {error}
+            <h5 className='mt-4 text-primary'>
+              For testing purpose, try using this credit card number "4242 4242
+              4242 4242" with MM and YY being any future date
+            </h5>
           </div>
-        )}
-      </form>
-      <h4 className={fullfilled ? 'result-message' : 'result-message hidden'}>
-        Payment Successful.{' '}
-        {userInfo && userInfo.role === 'admin' ? (
-          <Link to='/admin/dashboard'>See it in your dashboard.</Link>
-        ) : (
-          <Link to='/user/dashboard'>See it in your dashboard.</Link>
-        )}
-      </h4>
+          <form
+            id='payment-form'
+            className='stripe-form'
+            onSubmit={handleSubmit}
+          >
+            <CardElement
+              id='card-element'
+              options={cardStyle}
+              onChange={handleChange}
+            />
+
+            <button
+              className='stripe-button'
+              disabled={processing || disabled || fullfilled}
+            >
+              <span id='button-text'>
+                {processing ? (
+                  <div className='spinner' id='spinner'></div>
+                ) : (
+                  'Pay'
+                )}
+              </span>
+            </button>
+            <br />
+
+            {error && (
+              <div className='card-error' role='alert'>
+                {error}
+              </div>
+            )}
+          </form>
+          <h4
+            className={fullfilled ? 'result-message' : 'result-message hidden'}
+          >
+            Payment Successful.{' '}
+            {userInfo && userInfo.role === 'admin' ? (
+              <Link to='/admin/dashboard'>See it in your dashboard.</Link>
+            ) : (
+              <Link to='/user/dashboard'>See it in your dashboard.</Link>
+            )}
+          </h4>
+        </>
+      )}
     </>
   )
 }

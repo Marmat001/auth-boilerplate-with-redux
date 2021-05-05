@@ -12,6 +12,11 @@ const LatestAddedTours = () => {
 
   useEffect(() => {
     importTours()
+
+    return () => {
+      setTours([])
+    }
+    // eslint-disable-next-line
   }, [page])
 
   useEffect(() => {

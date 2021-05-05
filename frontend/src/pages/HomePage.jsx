@@ -1,4 +1,3 @@
-import { LoadingOutlined } from '@ant-design/icons'
 import ContinentList from '../components/ContinentList'
 import CountryList from '../components/CountryList'
 import LatestAddedTours from '../components/LatestAddedTours'
@@ -42,7 +41,7 @@ const HomePage = () => {
           <hr className='btn-outline-secondary w-25' />
 
           <div className='text-center'>
-            <img src={Logo} />
+            <img alt='logo' src={Logo} />
             <h3 className='mt-3 mb-5'>
               <span>&#169; Tourify</span>
             </h3>

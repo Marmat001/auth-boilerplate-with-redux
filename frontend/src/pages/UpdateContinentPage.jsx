@@ -13,10 +13,10 @@ const UpdateContinentPage = ({ history, match }) => {
 
   const [name, setName] = useState('')
   const [buttonText, setButtonText] = useState('Save')
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     loadContinents()
+    // eslint-disable-next-line
   }, [])
 
   const loadContinents = () =>

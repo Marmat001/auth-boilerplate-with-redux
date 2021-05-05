@@ -15,7 +15,7 @@ const ContinentHomePage = ({ match }) => {
       setTours(resp.data.tours)
       setLoading(false)
     })
-  }, [])
+  }, [match.params.slug])
 
   return (
     <div className='container'>

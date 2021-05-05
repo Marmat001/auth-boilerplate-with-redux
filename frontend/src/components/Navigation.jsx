@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Logo from '../images/icon.svg'
 
 import { Menu } from 'antd'
 import {
@@ -45,7 +44,7 @@ const Navigation = () => {
       onClick={handleClick}
       selectedKeys={[current]}
       mode='horizontal'
-      className='p-2 text-center'
+      className='p-2'
     >
       <Item className='float-left' key='home' icon={<HomeOutlined />}>
         <Link to='/'>Home</Link>
@@ -92,7 +91,7 @@ const Navigation = () => {
         </SubMenu>
       )}
 
-      <span className='float-right p-2'>
+      <span key='search' className='float-right p-2'>
         <SearchInput />
       </span>
     </Menu>

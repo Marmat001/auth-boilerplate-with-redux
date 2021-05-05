@@ -14,6 +14,10 @@ const ContinentList = () => {
       setContinents(c.data)
       setLoading(false)
     })
+
+    return () => {
+      setContinents([])
+    }
   }, [])
 
   const displayContinents = () =>

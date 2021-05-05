@@ -14,6 +14,10 @@ const CountryList = () => {
       setCountries(c.data)
       setLoading(false)
     })
+
+    return () => {
+      setCountries([])
+    }
   }, [])
 
   const displayCountries = () =>

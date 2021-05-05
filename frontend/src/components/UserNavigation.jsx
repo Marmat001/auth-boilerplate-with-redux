@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom'
-import { MenuOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
 
 const UserNavigation = ({ showNav, setShowNav }) => {
   const active = window.location.pathname

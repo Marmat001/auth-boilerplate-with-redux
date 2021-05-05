@@ -23,6 +23,7 @@ const ShopPage = () => {
   const [tours, setTours] = useState([])
   const [continents, setContinents] = useState([])
   const [countries, setCountries] = useState([])
+  // eslint-disable-next-line
   const [country, setCountry] = useState('')
   const [continentsIds, setContinentsIds] = useState([])
   const [loading, setLoading] = useState(false)
@@ -67,6 +68,7 @@ const ShopPage = () => {
 
   useEffect(() => {
     fetchTours({ price })
+    // eslint-disable-next-line
   }, [approved])
 
   const handlePrice = (price) => {

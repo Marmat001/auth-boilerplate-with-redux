@@ -42,6 +42,7 @@ const AddTourPage = ({ history }) => {
 
   useEffect(() => {
     importContinents()
+    // eslint-disable-next-line
   }, [])
 
   const importContinents = () =>

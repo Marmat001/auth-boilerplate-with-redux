@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import AdminNavigation from '../components/AdminNavigation'
 import { useSelector } from 'react-redux'
-import { addTour, getTour, updateTour } from '../helperFunctions/tourFunctions'
+import { getTour, updateTour } from '../helperFunctions/tourFunctions'
 import { toast } from 'react-toastify'
 import {
   getContinents,
@@ -45,6 +45,8 @@ const UpdateTourPage = ({ history, match }) => {
   useEffect(() => {
     importTours()
     importContinents()
+
+    // eslint-disable-next-line
   }, [])
 
   const importTours = () => {
@@ -55,9 +57,7 @@ const UpdateTourPage = ({ history, match }) => {
       })
 
       let countryIds = []
-      t.data.country.map((c) => {
-        countryIds.push(c._id)
-      })
+      t.data.country.map((c) => countryIds.push(c._id))
 
       setArrOfCountryIds(countryIds)
     })

@@ -17,6 +17,7 @@ const WishlistPage = () => {
 
   useEffect(() => {
     importWishlist()
+    // eslint-disable-next-line
   }, [])
 
   const importWishlist = () => {

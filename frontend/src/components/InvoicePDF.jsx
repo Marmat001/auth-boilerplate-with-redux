@@ -9,7 +9,6 @@ import {
 } from '@david.kucsai/react-pdf-table'
 
 const InvoicePDF = ({ order }) => {
-  const { tour } = order
   return (
     <Document>
       <Page style={styles.body}>

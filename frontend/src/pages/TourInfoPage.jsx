@@ -5,7 +5,7 @@ import { getRelatedTours, getTour } from '../helperFunctions/tourFunctions'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-import { addTourToWishlist, getWishlist } from '../helperFunctions/authFunction'
+import { addTourToWishlist } from '../helperFunctions/authFunction'
 
 const TourInfoPage = ({ match, history }) => {
   const userInfo = useSelector((state) => state.user)
@@ -16,6 +16,8 @@ const TourInfoPage = ({ match, history }) => {
 
   useEffect(() => {
     importTourInfo()
+
+    // eslint-disable-next-line
   }, [match.params.slug])
 
   const importTourInfo = () => {
