@@ -54,9 +54,9 @@ const UserDashboardPage = () => {
             </h4>
 
             {orders.map((order, i) => (
-              <div key={i} className='m-5 p-3 text-center card'>
+              <div key={i} className='m-5 p-3 card'>
                 <DisplayPaymentInfo order={order} />
-                <table className='table table-bordered'>
+                <table className='table table-bordered order-table'>
                   <thead className='thead-light'>
                     <tr>
                       <th scope='col'>Tour</th>
@@ -70,10 +70,7 @@ const UserDashboardPage = () => {
 
                   <tbody>
                     <tr>
-                      <td>
-                        <b className='text-info'>{order.tour.title}</b>
-                      </td>
-
+                      <td className='text-info'>{order.tour.title}</td>
                       <td className='text-info'>{order.country}</td>
                       <td className='text-info'>
                         {(order.paymentIntent.amount * 0.01).toLocaleString(

@@ -1,7 +1,7 @@
 import React from 'react'
 
 const DisplayPaymentInfo = ({ order }) => (
-  <div>
+  <div className='text-center'>
     <p className='paymentinfo-heading'>
       <span>Order ID: {order.paymentIntent.id}</span> <br />
       <span>Currency: {order.paymentIntent.currency.toUpperCase()}</span> <br />
