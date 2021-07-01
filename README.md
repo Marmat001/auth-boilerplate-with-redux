@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Tourify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fully responsive CRUD application built with the MERN stack (React, MongoDB, Express & Node). The goal when making this project was to add as much functionality as possible, and preferably by using different programming approaches. I wanted this to be one of my largest and most complex projects yet, to really evaluate and experiment with my knowledge.
 
-## Available Scripts
+## About The Build
 
-In the project directory, you can run:
+Building this full-stack application was a great opportunity to augment my expertise in what I had been learning at the time such as:  <br />
 
-### `yarn start`
+- Integrating firebase for authentication handling and saving user information in MongoDB database, combining firebase with MongoDB for an efficient authentication system <br />
+- Using a location data platform like Mapbox that powers the maps and location services used in many popular apps <br />
+- Working with a component based styling framework like Ant Design <br />
+- Utilizing a cloud-based image / video management service like Cloudinary for effortless multiple image uploads <br />
+<br />
+There is a lot of functionality in this application, it would be hard to mention everything... so here are some of the features provided:
+<br /><br />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Allows users to post products/services <br />
+- Allows other users to buy these products/services <br />
+- Page pagination <br />
+- Hotel search feature, filtering by destination, start date, end date and number of beds <br />
+- Filter by price & rating functionality <br />
+- Star rating system <br />
+- Automatic redirection to previous page after typing in login credentials to access private functionality / routes <br />
+- System that checks if hotel has already been booked by the user, no duplicate bookings allowed <br />
+- Login authentication system with email & password / Google login / Facebook login <br />
+- Forgot / reset password functionality, confirmation email on sign up etc... <br />
+- User profile for sellers with dashboard showing booking summaries, account balance, stripe payout settings, when the user joined the website and an option for editing / removing / adding a new hotel for booking <br />
+- Google Maps API for location suggestions / autocompletes <br />
+- View orders in customers dashboard and detailed info via payment modal <br />
+- Two different types of users are hosted in this app, a seller and a buyer. The seller can for example be a hotel owner who will post the hotel rooms available for booking. The buyer is the one who can then book this hotel room <br />
+- As the platform owner, you will be able to collect money from customers, take a certain commission/fee for being the platform owner, and then pay the rest to the sellers <br />
+- Payment flow is automated using stripe. After a customer pays, stripe will allocate a certain percentage to the seller and a certain percentage to the platform owner. Then, every week stripe will automatically pay the balance out to the bank accounts of the account holders <br />
+- Mobile responsive
