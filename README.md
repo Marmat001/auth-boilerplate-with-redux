@@ -14,20 +14,21 @@ Building this full-stack application was a great opportunity to augment my exper
 There is a lot of functionality in this application, it would be hard to mention everything... so here are some of the features provided:
 <br /><br />
 
-- Allows users to post products/services <br />
-- Allows other users to buy these products/services <br />
-- Page pagination <br />
-- Hotel search feature, filtering by destination, start date, end date and number of beds <br />
-- Filter by price & rating functionality <br />
-- Star rating system <br />
-- Automatic redirection to previous page after typing in login credentials to access private functionality / routes <br />
-- System that checks if hotel has already been booked by the user, no duplicate bookings allowed <br />
-- Login authentication system with email & password / Google login / Facebook login <br />
+- Firebase authentication handling <br />
+- Complete login with email / password & social login (Google) <br />
 - Forgot / reset password functionality, confirmation email on sign up etc... <br />
-- User profile for sellers with dashboard showing booking summaries, account balance, stripe payout settings, when the user joined the website and an option for editing / removing / adding a new hotel for booking <br />
-- Google Maps API for location suggestions / autocompletes <br />
-- View orders in customers dashboard and detailed info via payment modal <br />
-- Two different types of users are hosted in this app, a seller and a buyer. The seller can for example be a hotel owner who will post the hotel rooms available for booking. The buyer is the one who can then book this hotel room <br />
-- As the platform owner, you will be able to collect money from customers, take a certain commission/fee for being the platform owner, and then pay the rest to the sellers <br />
-- Payment flow is automated using stripe. After a customer pays, stripe will allocate a certain percentage to the seller and a certain percentage to the platform owner. Then, every week stripe will automatically pay the balance out to the bank accounts of the account holders <br />
+- Role based access control for users and admin <br />
+- Automatic redirection to previous page after typing in login credentials to access private functionality / routes <br />
+- Admin dashboard with add / edit or delete tour / country functionality, booking management system and more... <br />
+- User dashboard with password update, booking history and invoice / PDF download etc... <br />
+- Tours CRUD functionality with advanced features including continents, countries etc... <br />
+- Multiple image uploads with client side resize <br />
+- Plenty of advanced filtering and searching options <br />
+- Page pagination <br />
+- Discount coupon code system <br />
+- "Add to wishlist" functionality with "Already wishlisted" displayed on the screen if user has wishlisted tour previously without removing it <br />
+- Option to see how many times a certain tour has been booked <br />
+- Click continent / country name on detail page to see all tours available in that location <br />
+- Integrated Mapbox to display map in application with factual start location for each tour <br />
+- Checkout with stripe for credit / debit card payments <br />
 - Mobile responsive
